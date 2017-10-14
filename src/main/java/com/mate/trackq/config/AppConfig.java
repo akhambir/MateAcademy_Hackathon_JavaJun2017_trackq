@@ -40,6 +40,7 @@ public class AppConfig {
     }
 
     @Bean
+    @DependsOn("flyway")
     public LocalSessionFactoryBean getSessionFactory() {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
         factoryBean.setDataSource(dataSource());
