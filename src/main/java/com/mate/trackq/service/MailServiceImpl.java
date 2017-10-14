@@ -23,7 +23,7 @@ public class MailServiceImpl implements MailService {
 
     @Override
     public void sendConfirmRegistrationEmail(User user, String hostname) {
-        String confirmationLink = hostname + "/confirm-registration?u_id=" + user.getId() * 23 + 4;
+        String confirmationLink = hostname + "/confirm-registration?u_id=" + user.getId() * 17;
         String emailReceiver = user.getEmail();
         String subject = "E-Mail confirmation TrackQ";
         String messageText = "Hello, " + user.getUsername() + " please, confirm, your E-Mail, by link below" +
