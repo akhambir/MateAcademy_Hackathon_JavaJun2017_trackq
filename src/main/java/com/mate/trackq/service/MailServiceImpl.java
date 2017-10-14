@@ -2,6 +2,7 @@ package com.mate.trackq.service;
 
 import com.mate.trackq.dao.UserDao;
 import com.mate.trackq.model.User;
+import com.mate.trackq.util.Hasher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
@@ -14,7 +15,7 @@ public class MailServiceImpl implements MailService {
     private MailSender mailSender;
 
     @Autowired
-    private UserDao userDao;
+    private UserService userService;
 
     @Override
     public void sendSimpleEmail(User user) {
@@ -22,8 +23,13 @@ public class MailServiceImpl implements MailService {
     }
 
     @Override
+    public void sendInviteInProject(User user) {
+
+    }
+
+    @Override
     public void sendConfirmRegistrationEmail(User user, String hostname) {
-        String confirmationLink = hostname + "/confirm-registration?u_id=" + user.getId() * 23 + 4;
+        String confirmationLink = hostname + "/confirm-registration?hashedEmail=" + Hasher.getSha256(user.getEmail());
         String emailReceiver = user.getEmail();
         String subject = "E-Mail confirmation TrackQ";
         String messageText = "Hello, " + user.getUsername() + " please, confirm, your E-Mail, by link below" +
@@ -37,7 +43,7 @@ public class MailServiceImpl implements MailService {
 
     @Override
     public void sendNewPasswordEmail(User user) {
-        userDao.resetPassword(user);
+        userService.resetPassword(user);
         String emailReceiver = user.getEmail();
         String subject = "Your new password";
         String messageText = user.getUsername()+ ", here is your new password " + user.getPassword();

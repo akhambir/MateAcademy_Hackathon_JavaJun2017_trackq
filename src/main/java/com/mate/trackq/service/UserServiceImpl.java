@@ -12,22 +12,22 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public void confirmPassword(String id) {
-
+    public void confirmEmail(String hashedEmail) {
+        userDao.confirmEmail(hashedEmail);
     }
 
     @Override
-    public void sendInvitation(String email) {
-
-    }
-
-    @Override
-    public User findByEmail(String email) {
-        return userDao.findByEmail(email);
+    public void resetPassword(User user) {
+        userDao.resetPassword(user);
     }
 
     @Override
     public void create(User user) {
         userDao.create(user);
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return userDao.findByEmail(email);
     }
 }
