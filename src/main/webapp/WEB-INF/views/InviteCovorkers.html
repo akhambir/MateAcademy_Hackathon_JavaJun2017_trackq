@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <meta charset="utf-8">
+    <link href="../../resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../resources/css/bootstrap-theme.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </button>
+                <a class="navbar-brand" href="/root/home">TrackQ.com</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span>Signin</a></li>
+
+                    <li><a href="/signup"> <span class="glyphicon glyphicon-ok"></span>Signup</a></li>
+
+                    <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+
+                    <li><a href="/profile"><span class="glyphicon glyphicon-user"></span>My profile</a></li>
+
+                    <li><a href="/projects"><span class="glyphicon glyphicon-list-alt"></span>My projects</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+    <div style="margin-top:150px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 panel-body panel panel-default">
+        <h3 class="text-info text-center">Invite your colleague</h3>
+        <form id="addCoworker" class="form-horizontal" method="post" action="/addCoworker">
+
+            <label for="project">Select project to add coworker</label>
+
+            <div style="margin-bottom: 20px" class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+                <select id="project" name="project" class="form-control">
+                    <option value="1" selected="selected">one</option>
+                    <option value="2">two</option>
+                    <option value="3">three</option>
+                </select>
+            </div>
+
+            <label for="searchFor">Enter coworker email</label>
+
+            <div style="margin-bottom: 15px" class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input id="searchFor" type="text" name="searchFor" required
+                       placeholder="coworker email" class="form-control">
+            </div>
+
+            <div class="col-sm-12 controls text-center">
+                <button type="submit" id="btn-invite" class="btn btn-primary btn-md ">Invite</button>
+            </div>
+        </form>
+    </div>
+
+<!-- jQuery -->
+<script src="../../resources/js/jquery-3.2.1.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../resources/js/bootstrap.min.js"></script>
+
+</body>
+</html>
