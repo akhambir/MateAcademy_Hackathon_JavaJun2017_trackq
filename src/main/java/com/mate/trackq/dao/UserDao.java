@@ -13,4 +13,6 @@ public interface UserDao {
     User create(User user);
 
     void resetPassword(User user);
+
+    User findByEmail(String email);
 }
