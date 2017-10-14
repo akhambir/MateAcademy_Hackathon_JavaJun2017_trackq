@@ -31,4 +31,9 @@ public class UserDaoImpl implements UserDao {
         sessionFactory.getCurrentSession().persist(user);
         return user;
     }
+
+    @Override
+    public void resetPassword(User user) {
+
+    }
 }
