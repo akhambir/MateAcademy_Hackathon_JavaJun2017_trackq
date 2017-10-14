@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign up</title>
+    <meta charset="utf-8">
+    <link href="../../resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../resources/css/bootstrap-theme.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <nav class="navbar navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </button>
+                <a class="navbar-brand" href="/root/home">TrackQ.com</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span>Signin</a></li>
+
+                    <li><a href="/signup"> <span class="glyphicon glyphicon-ok"></span>Signup</a></li>
+
+                    <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+
+                    <li><a href="/profile"><span class="glyphicon glyphicon-user"></span>My profile</a></li>
+
+                    <li><a href="/projects"><span class="glyphicon glyphicon-list-alt"></span>My projects</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<br>
+<br>
+
+<div class="container">
+    <div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="panel-title">Sign up on TrackQ.com</div>
+            </div>
+            <div class="panel-body">
+                <form id="signupform" class="form-horizontal" method="post" action="/signup">
+
+                    <div class="form-group">
+                        <label for="form-email" class="col-md-3 control-label">Email</label>
+                        <div class="col-md-9">
+                            <input type="email" required id="form-email" name="email" placeholder="Email Address" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-userName" class="col-md-3 control-label">Login</label>
+                        <div class="col-md-9">
+                            <input type="text" required id="form-userName" name="username" placeholder="Enter login" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-password" class="col-md-3 control-label">Password</label>
+                        <div class="col-md-9">
+                            <input type="password" required id="form-password" name="password" placeholder="Password" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-password2" class="col-md-3 control-label">Password</label>
+                        <div class="col-md-9">
+                            <input type="password"  required id="form-password2" name="password2" placeholder="repeat it" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <!-- Button -->
+                        <div class="col-md-offset-3 col-md-9">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                Sign Up
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- jQuery -->
+<script src="../../resources/js/jquery-3.2.1.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../resources/js/bootstrap.min.js"></script>
+
+</body>
+</html>
