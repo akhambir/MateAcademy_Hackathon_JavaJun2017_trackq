@@ -36,4 +36,12 @@ public class UserDaoImpl implements UserDao {
     public void resetPassword(User user) {
 
     }
+
+    @Override
+    public User findByEmail(String email) {
+        return (User) sessionFactory.getCurrentSession()
+                .createQuery("from User where email=:email")
+                .setParameter("email", email)
+                .uniqueResult();
+    }
 }
