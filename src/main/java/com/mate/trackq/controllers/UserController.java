@@ -19,7 +19,7 @@ public class UserController {
 
     @RequestMapping("/login")
     public ModelAndView LogInPage() {
-        return new ModelAndView("login", "user", null);
+        return new ModelAndView("login", "user", new User());
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)

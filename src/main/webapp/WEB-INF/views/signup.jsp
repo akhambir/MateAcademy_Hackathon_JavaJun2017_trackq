@@ -26,23 +26,24 @@
             <div class="panel-body">
 
                 <%--@elvariable id="user" type="com.mate.trackq.model.User"--%>
-                <spring:form id="loginform" modelAttribute="user" method="post" action="/signup">
+                <spring:form id="signup" modelAttribute="user" method="post" action="/signup"
+                             onsubmit="return validateForm()">
 
                     <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                         <spring:input path="email" class="form-control"
-                                      placeholder="username" id="login-username" type="email"/>
+                                      placeholder="username" id="email" type="email"/>
                     </div>
 
                     <div style="margin-bottom: 15px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <spring:input path="username" class="form-control"
-                                      placeholder="username" id="login-username" type="text"/>
+                                      placeholder="username" id="login" type="text"/>
                     </div>
 
                     <div style="margin-bottom: 15px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <spring:input path="password" class="form-control" id="login-password" type="password"/>
+                        <spring:input path="password" class="form-control" id="password1" type="password"/>
                     </div>
 
                     <div style="margin-bottom: 15px" class="input-group">
@@ -64,6 +65,31 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+<script>
+    function validateForm() {
+        const email = document.forms["signup"]["email"].value;
+        const login = document.forms["signup"]["login"].value;
+        const password1 = document.forms["signup"]["password1"].value;
+        const password2 = document.forms["signup"]["password2"].value;
 
+        if (password1!==password2) {
+            document.getElementById("password1").classList.add('alert-danger');
+            document.getElementById("password2").classList.add('alert-danger');
+            return false;
+        }
+
+        const string = "sample1";
+        const emailRegex = new RegExp("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        const loginRegex = new RegExp("^[a-zA-Zа-яА-Я0-9@.ЇїІіґҐ_]{5,32}$");
+        if (!emailRegex.test(email)) {
+            document.getElementById("email").classList.add('alert-danger');
+            return false;
+        }
+        if (!loginRegex.test(login)) {
+            document.getElementById("login").classList.add('alert-danger');
+            return false;
+        }
+    }
+</script>
 </body>
 </html>

@@ -1,16 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ attribute name="basic" required="true"%>
 
-<c:choose>
-    <c:when test="${not empty validator}">
-        <c:if test="${validator.isStatus()}">class="form-control ${basic}"</c:if>
-        <c:if test="${not validator.isStatus()}">class="form-control alert-danger ${basic}"</c:if>
-    </c:when>
-    <c:otherwise>
-        class="form-control ${basic}"
-    </c:otherwise>
-</c:choose>
-
 <div class="container">
     <nav class="navbar navbar-fixed-top" role="navigation">
         <div class="container-fluid">
