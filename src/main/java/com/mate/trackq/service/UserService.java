@@ -6,4 +6,8 @@ public interface UserService {
     void confirmEmail(String hashedEmail);
 
     void resetPassword(User user);
+
+    void create (User user);
+
+    User findByEmail(String email);
 }

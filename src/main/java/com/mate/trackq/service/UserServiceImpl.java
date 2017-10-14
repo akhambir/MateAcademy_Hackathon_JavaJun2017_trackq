@@ -20,4 +20,14 @@ public class UserServiceImpl implements UserService {
     public void resetPassword(User user) {
         userDao.resetPassword(user);
     }
+
+    @Override
+    public void create(User user) {
+        userDao.create(user);
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return userDao.findByEmail(email);
+    }
 }
