@@ -17,10 +17,10 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public void inviteMember(String email, Project project) {
         User user = userService.findByEmail(email);
-        if (user != null) {
+/*        if (user != null) {
             user.addProject(project);
         }
-        mailService.sendInvitation(email, project);
+        mailService.sendInvitation(email, project);*/
     }
 
     @Override
