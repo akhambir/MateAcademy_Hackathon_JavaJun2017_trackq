@@ -1,6 +1,7 @@
 package com.mate.trackq.model;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,6 +26,14 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles;
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Project.class, cascade = CascadeType.MERGE)
+    @JoinTable(
+            schema = "trackq",
+            name = "user_to_project",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "project_id")
+    )
+    private List<Project> project;
 
     public Long getId() {
         return id;
