@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class Hasher {
 
-    public String getSha256(String string) {
+    public static String getSha256(String string) {
         StringBuffer hexString = new StringBuffer();
 
         try {

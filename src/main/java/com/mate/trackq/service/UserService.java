@@ -3,11 +3,11 @@ package com.mate.trackq.service;
 import com.mate.trackq.model.User;
 
 public interface UserService {
-    void confirmPassword(String id);
+    void confirmEmail(String hashedEmail);
 
-    void sendInvitation(String email);
+    void resetPassword(User user);
+
+    void create (User user);
 
     User findByEmail(String email);
-
-    void create(User user);
 }

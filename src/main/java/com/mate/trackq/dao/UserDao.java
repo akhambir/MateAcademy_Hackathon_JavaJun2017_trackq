@@ -15,4 +15,6 @@ public interface UserDao {
     void resetPassword(User user);
 
     User findByEmail(String email);
+
+    void confirmEmail(String hashedEmail);
 }

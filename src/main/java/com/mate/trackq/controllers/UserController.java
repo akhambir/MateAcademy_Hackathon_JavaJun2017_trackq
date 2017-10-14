@@ -28,20 +28,22 @@ public class UserController {
         return new ModelAndView("login", "user", new User());
     }
 
-    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public ModelAndView registration() {
         return new ModelAndView("signup", "user", new User());
     }
-//todo
-    @RequestMapping(value = "/registrationByLink", method = RequestMethod.GET)
-    public ModelAndView registration(@RequestParam("project") String projectName) {
+
+    @RequestMapping(value = "/signupByLink", method = RequestMethod.GET)
+    public ModelAndView registration(@RequestParam("projectName") String projectName,
+                                     @RequestParam("projectCreatorHash") String projectCreatorHash ) {
         ModelAndView mv = new ModelAndView("signup", "user", new User());
         mv.addObject("projectName", projectName);
+        mv.addObject("projectCreatorHash", projectCreatorHash);
         return mv;
     }
 
 
-    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public ModelAndView registration(HttpServletRequest request, @ModelAttribute User user) {
         ModelAndView mv = new ModelAndView();
         userService.create(user);
@@ -49,7 +51,7 @@ public class UserController {
         return mv;
     }
 //todo
-    @RequestMapping(value = "/registrationByLink", method = RequestMethod.POST)
+    @RequestMapping(value = "/signupByLink", method = RequestMethod.POST)
     public ModelAndView registration(HttpServletRequest request, @ModelAttribute User user, @RequestParam("project") String projectName) {
         ModelAndView mv = new ModelAndView();
         userService.create(user);
