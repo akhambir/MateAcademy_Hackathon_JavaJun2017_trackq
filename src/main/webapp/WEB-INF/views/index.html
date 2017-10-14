@@ -62,17 +62,63 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="bg-info col-xs-12 col-sm-3">
-            <h4>Do something </h4>
-            <button class="btn btn-primary">Some button</button>
-            <button class="btn btn-primary">Some button</button>
-            <h4>Do something else</h4>
-            <button class="btn btn-primary">Some button</button>
-            <button class="btn btn-primary">Some button</button>
+
+        <div class="col-xs-12 col-sm-3 panel-body panel panel-default">
+            <h4>What should we do?</h4>
+            <div class="form-group">
+                <a href="CreateProject.html" class="btn btn-warning">Create Project</a>
+            </div>
+            <div class="form-group">
+                <a href="CreateIssue.html" class="btn btn-info">Create Issue</a>
+            </div>
+            <div class=class="form-group">
+                <a href="InviteCovorkers.html" class="btn btn-success">Invite coworker</a>
+            </div>
         </div>
-        <div class="col-xs-12 col-sm-9">
+
+
+        <div class="col-xs-12 col-sm-9 panel-body panel panel-default">
             <div class="row">
-                <h2 class="text-danger">Some projects</h2>
+                <h4 class="text-danger">My projects</h4>
+                <table class="table-condensed table-bordered">
+                    <thead>
+                    <tr>
+                        <th class="text-center">Project name</th>
+                        <th class="text-center">Your role</th>
+                        <th class="text-center">Issues</th>
+                        <th class="text-center">My issues</th>
+                        <th class="text-center">actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <input name="orderId" readonly style="width: 75px">
+                        </td>
+                        <td>
+                            <input name="userId" readonly style="width: 75px">
+                        </td>
+                        <td>
+                            <input type="date" readonly disabled style="width: 150px">
+                        </td>
+                        <td>
+                            <select class="form-control bg-warning" name="status" style="width: 150px">
+                                <option value="1" selected="selected">they are dorks</option>
+                                <option value="2">they kick me =(</option>
+                                <option value="3">I like to fuck up</option>
+                            </select>
+                        </td>
+
+                        <td>
+                            <button class="btn-link" value="update" name="command"><span
+                                    class="glyphicon glyphicon-refresh"></span>
+                                checkout
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
             </div>
         </div>
     </div>
