@@ -7,6 +7,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
@@ -70,4 +71,20 @@ public class AppConfig {
         return flyway;
     }
 
+    @Bean
+    public JavaMailSenderImpl javaMailSenderImpl() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
+
+        mailSender.setUsername("procomiteevaluacion@gmail.com");
+        mailSender.setPassword("evaluacion2017");
+
+        Properties prop = mailSender.getJavaMailProperties();
+        prop.put("mail.transport.protocol", "smtp");
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.smtp.starttls.enable", "true");
+        prop.put("mail.debug", "true");
+        return mailSender;
+    }
 }
