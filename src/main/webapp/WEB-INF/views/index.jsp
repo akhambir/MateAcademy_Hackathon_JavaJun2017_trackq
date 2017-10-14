@@ -21,7 +21,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3 col-sm-4 visible-md visible-sm visible-lg">
-            <img src="../../resources/img/analyze.png" height="250">
+            <img src="${pageContext.request.contextPath}/resources/img/analyze.png" height="250">
         </div>
         <div class="col-md-6 col-sm-5 col-xs-12 text-center">
             <h1 class="text-info">TrackQ</h1>
@@ -29,7 +29,7 @@
             <h3>We wish you good luck whits this tool.</h3>
         </div>
         <div class="col-md-3 col-sm-3 visible-md visible-sm visible-lg">
-            <img src="../../resources/img/Project%20Tracking.png" height="250">
+            <img src="${pageContext.request.contextPath}/resources/img/Project%20Tracking.png" height="250">
         </div>
     </div>
 </div>
