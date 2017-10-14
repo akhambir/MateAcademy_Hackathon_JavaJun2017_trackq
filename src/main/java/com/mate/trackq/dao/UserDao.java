@@ -1,8 +1,12 @@
 package com.mate.trackq.dao;
 
-import org.springframework.data.repository.CrudRepository;
+import com.mate.trackq.model.User;
 
-public interface UserDao extends CrudRepository<User, Long> {
+public interface UserDao {
+
+    User findById(Long id);
 
     User findByUsername(String username);
+
+    User create(User user);
 }
