@@ -20,3 +20,11 @@ CREATE TABLE IF NOT EXISTS trackq.user_to_role (
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY(role_id) REFERENCES roles(id)
 );
+
+CREATE TABLE IF NOT EXISTS  trackq.user_email_confirmation (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  confirmation_id VARCHAR(255),
+  user_id INT NOT NULL, role_id INT NOT NULL,
+  expiration_timestamp timestamp,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
