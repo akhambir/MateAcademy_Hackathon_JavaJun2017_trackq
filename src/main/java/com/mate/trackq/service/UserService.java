@@ -17,4 +17,5 @@ public interface UserService {
     void resetPassword(User user);
 
     User findByEmail(String email);
+
 }
