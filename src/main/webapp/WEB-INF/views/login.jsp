@@ -26,23 +26,24 @@
             <div style="padding-top:30px" class="panel-body">
 
                 <%--@elvariable id="user" type="com.mate.trackq.model.User"--%>
-                <spring:form id="loginform" modelAttribute="user" method="post" action="/login">
+                <form name="login" action="<c:url value="/login"/>" id="loginform" method="post" >
 
                     <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <spring:input path="username" class="form-control"
+                        <input name="username" class="form-control"
                                       placeholder="username" id="login-username" type="text"/>
                     </div>
 
                     <div style="margin-bottom: 5px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <spring:input path="password" class="form-control" id="login-password"/>
+                        <input type="password" name="password" class="form-control" id="login-password"/>
                     </div>
 
                     <div class="col-sm-12 controls text-center">
                         <button type="submit" id="btn-login" class="btn btn-success btn-lg ">Login</button>
                     </div>
-                </spring:form>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                </form>
 
             </div>
         </div>
