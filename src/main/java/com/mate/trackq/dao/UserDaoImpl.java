@@ -38,6 +38,11 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public void confirmEmail(String hashedEmail) {
+
+    }
+
+    @Override
     public User findByEmail(String email) {
         return (User) sessionFactory.getCurrentSession()
                 .createQuery("from User where email=:email")

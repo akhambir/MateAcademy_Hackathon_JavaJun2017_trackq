@@ -12,8 +12,8 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public void confirmEmail(String id) {
-        userDao.confirmEmail(id);
+    public void confirmEmail(String hashedEmail) {
+        userDao.confirmEmail(hashedEmail);
     }
 
     @Override
