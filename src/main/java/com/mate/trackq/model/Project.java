@@ -5,12 +5,12 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "PROJECT")
+@Table(name = "PROJECT", schema = "trackq")
 public class Project {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column(name = "PROJECT_NAME")
     private String pName;
     @Column(name = "DESCRIPTION")
@@ -19,13 +19,14 @@ public class Project {
     private List<Issue> issues;
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "project")
     private List<User> users;
+    @Enumerated(EnumType.STRING)
     private Status status;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

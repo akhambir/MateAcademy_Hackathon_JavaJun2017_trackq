@@ -47,33 +47,33 @@
                 <div class="panel-title">Sign up on TrackQ.com</div>
             </div>
             <div class="panel-body">
-                <form id="signupform" class="form-horizontal" method="post" action="/signup">
+                <form id="signupform" class="form-horizontal" method="post" action="/signup" onsubmit="return validateForm()">
 
                     <div class="form-group">
-                        <label for="form-email" class="col-md-3 control-label">Email</label>
+                        <label for="email" class="col-md-3 control-label">Email</label>
                         <div class="col-md-9">
-                            <input type="email" required id="form-email" name="email" placeholder="Email Address" class="form-control">
+                            <input id="email" type="email" required name="email" placeholder="Email Address" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="form-userName" class="col-md-3 control-label">Login</label>
+                        <label for="login" class="col-md-3 control-label">Login</label>
                         <div class="col-md-9">
-                            <input type="text" required id="form-userName" name="username" placeholder="Enter login" class="form-control">
+                            <input type="text" required id="login" name="username" placeholder="Enter login" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="form-password" class="col-md-3 control-label">Password</label>
+                        <label for="password1" class="col-md-3 control-label">Password</label>
                         <div class="col-md-9">
-                            <input type="password" required id="form-password" name="password" placeholder="Password" class="form-control">
+                            <input type="password" required id="password1" name="password" placeholder="Password" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="form-password2" class="col-md-3 control-label">Password</label>
+                        <label for="password2" class="col-md-3 control-label">Password</label>
                         <div class="col-md-9">
-                            <input type="password"  required id="form-password2" name="password2" placeholder="repeat it" class="form-control">
+                            <input type="password"  required id="password2" name="password2" placeholder="repeat it" class="form-control">
                         </div>
                     </div>
 
@@ -95,6 +95,31 @@
 <script src="../../resources/js/jquery-3.2.1.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="../../resources/js/bootstrap.min.js"></script>
+<script>
+    function validateForm() {
+        const email = document.forms["signupform"]["email"].value;
+        const login = document.forms["signupform"]["login"].value;
+        const password1 = document.forms["signupform"]["password1"].value;
+        const password2 = document.forms["signupform"]["password2"].value;
 
+        if (password1!==password2) {
+            document.getElementById("password1").classList.add('alert-danger');
+            document.getElementById("password2").classList.add('alert-danger');
+            return false;
+        }
+
+        const string = "sample1";
+        const emailRegex = new RegExp("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        const loginRegex = new RegExp("^[a-zA-Zа-яА-Я0-9@.ЇїІіґҐ_]{5,32}$");
+        if (!emailRegex.test(email)) {
+            document.getElementById("email").classList.add('alert-danger');
+            return false;
+        }
+        if (!loginRegex.test(login)) {
+            document.getElementById("login").classList.add('alert-danger');
+            return false;
+        }
+    }
+</script>
 </body>
 </html>

@@ -14,5 +14,5 @@ public interface UserDao {
 
     void resetPassword(User user);
 
-    void confirmEmail(String id);
+    User findByEmail(String email);
 }
