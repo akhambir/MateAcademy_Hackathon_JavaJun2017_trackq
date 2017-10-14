@@ -18,5 +18,5 @@ CREATE TABLE IF NOT EXISTS trackq.user_to_role (
   user_to_role_id INT PRIMARY KEY AUTO_INCREMENT,
   user_id INT NOT NULL, role_id INT NOT NULL,
    FOREIGN KEY (user_id) REFERENCES users(id),
-   FOREIGN KEY(role_id) REFERENCES roles(role_id)
+   FOREIGN KEY(role_id) REFERENCES roles(id)
 );
