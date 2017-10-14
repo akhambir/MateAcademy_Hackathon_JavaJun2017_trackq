@@ -18,8 +18,8 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public void confirmEmail(String hashedEmail) {
-        userDao.confirmEmail(hashedEmail);
+    public boolean confirmEmail(String hashedEmail, Long id) {
+        return userDao.confirmEmail(hashedEmail, id);
     }
 
     @Override

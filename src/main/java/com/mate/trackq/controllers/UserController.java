@@ -56,8 +56,7 @@ public class UserController {
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public ModelAndView registration(HttpServletRequest request, @ModelAttribute User user) {
         ModelAndView mv = new ModelAndView();
-        userService.create(user);
-        mailService.sendConfirmRegistrationEmail(user, request.getServerName());
+        mailService.sendConfirmRegistrationEmail(userService.create(user), request.getServerName());
         return mv;
     }
 //todo

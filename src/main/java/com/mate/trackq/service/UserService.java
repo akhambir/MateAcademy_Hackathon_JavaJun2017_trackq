@@ -12,7 +12,7 @@ public interface UserService {
 
     boolean emailExists(String email);
 
-    void confirmEmail(String hashedEmail);
+    boolean confirmEmail(String hashedEmail, Long id);
 
     void resetPassword(User user);
 
