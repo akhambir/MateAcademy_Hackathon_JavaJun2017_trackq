@@ -5,12 +5,14 @@ CREATE TABLE IF NOT EXISTS users (
   password VARCHAR(255) NOT NULL
 );
 
+
 CREATE TABLE IF NOT EXISTS roles (
   id INT PRIMARY KEY AUTO_INCREMENT,
   rolename VARCHAR(30) NOT NULL UNIQUE
 );
 
-CREATE TABLE IF NOT EXISTS users_to_roles (
+
+CREATE TABLE IF NOT EXISTS user_to_role (
   user_to_role_id INT PRIMARY KEY AUTO_INCREMENT,
   user_id INT NOT NULL, role_id INT NOT NULL,
    FOREIGN KEY (user_id) REFERENCES users(id),
