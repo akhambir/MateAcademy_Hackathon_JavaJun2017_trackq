@@ -8,18 +8,18 @@ import java.util.List;
 @Table(name = "PROJECT")
 public class Project {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
-        private Integer id;
-        @Column(name = "PROJECT_NAME")
-        private String pName;
-        @Column(name = "DESCRIPTION")
-        private String description;
-        @OneToMany(fetch = FetchType.LAZY, mappedBy = "project")
-        private List<Issue> issues;
-        @ManyToMany(fetch = FetchType.LAZY, mappedBy = "project")
-        private List<User> users;
-        private Status status;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+    @Column(name = "PROJECT_NAME")
+    private String pName;
+    @Column(name = "DESCRIPTION")
+    private String description;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "project")
+    private List<Issue> issues;
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "project")
+    private List<User> users;
+    private Status status;
 
     public Integer getId() {
         return id;
