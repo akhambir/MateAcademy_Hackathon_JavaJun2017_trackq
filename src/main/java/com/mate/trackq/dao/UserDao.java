@@ -9,4 +9,6 @@ public interface UserDao {
     User findByUsername(String username);
 
     User create(User user);
+
+    void resetPassword(User user);
 }
