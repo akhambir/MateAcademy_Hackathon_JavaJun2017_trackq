@@ -5,7 +5,9 @@ if [ "${pid}" ]; then
   eval "kill ${pid}"
 fi
 cd ${app_path}
+rm -rf ${tomcat_path}/webapps/*.war
 git pull
 mvn clean install
 cp target/*.war ${tomcat_path}/webapps/
+mv ${tomcat_path}/webapps/*.war ROOT.war
 sh ${tomcat_path}/bin/startup.sh
