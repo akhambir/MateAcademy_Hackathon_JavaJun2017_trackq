@@ -14,10 +14,15 @@ public class MailServiceImpl implements MailService {
     private MailSender mailSender;
 
     @Autowired
-    private UserDao userDao;
+    private UserService userService;
 
     @Override
     public void sendSimpleEmail(User user) {
+
+    }
+
+    @Override
+    public void sendInviteInProject(User user) {
 
     }
 
@@ -37,7 +42,7 @@ public class MailServiceImpl implements MailService {
 
     @Override
     public void sendNewPasswordEmail(User user) {
-        userDao.resetPassword(user);
+        userService.resetPassword(user);
         String emailReceiver = user.getEmail();
         String subject = "Your new password";
         String messageText = user.getUsername()+ ", here is your new password " + user.getPassword();
