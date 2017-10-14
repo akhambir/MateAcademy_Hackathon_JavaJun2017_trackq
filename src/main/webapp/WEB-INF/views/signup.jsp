@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -23,45 +24,37 @@
                 <div class="panel-title">Sign up on TrackQ.com</div>
             </div>
             <div class="panel-body">
-                <form id="signupform" class="form-horizontal" method="post" action="/signup">
 
-                    <div class="form-group">
-                        <label for="form-email" class="col-md-3 control-label">Email</label>
-                        <div class="col-md-9">
-                            <input type="email" required id="form-email" name="email" placeholder="Email Address" class="form-control">
-                        </div>
+                <%--@elvariable id="user" type="com.mate.trackq.model.User"--%>
+                <spring:form id="loginform" modelAttribute="user" method="post" action="/signup">
+
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <spring:input path="email" class="form-control"
+                                      placeholder="username" id="login-username" type="email"/>
                     </div>
 
-                    <div class="form-group">
-                        <label for="form-userName" class="col-md-3 control-label">Login</label>
-                        <div class="col-md-9">
-                            <input type="text" required id="form-userName" name="username" placeholder="Enter login" class="form-control">
-                        </div>
+                    <div style="margin-bottom: 15px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <spring:input path="username" class="form-control"
+                                      placeholder="username" id="login-username" type="text"/>
                     </div>
 
-                    <div class="form-group">
-                        <label for="form-password" class="col-md-3 control-label">Password</label>
-                        <div class="col-md-9">
-                            <input type="password" required id="form-password" name="password" placeholder="Password" class="form-control">
-                        </div>
+                    <div style="margin-bottom: 15px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <spring:input path="password" class="form-control" id="login-password" type="password"/>
                     </div>
 
-                    <div class="form-group">
-                        <label for="form-password2" class="col-md-3 control-label">Password</label>
-                        <div class="col-md-9">
-                            <input type="password"  required id="form-password2" name="password2" placeholder="repeat it" class="form-control">
-                        </div>
+                    <div style="margin-bottom: 15px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input class="form-control" id="password2" type="password"/>
                     </div>
 
-                    <div class="form-group">
-                        <!-- Button -->
-                        <div class="col-md-offset-3 col-md-9">
-                            <button type="submit" class="btn btn-primary btn-lg">
-                                Sign Up
-                            </button>
-                        </div>
+                    <div class="col-sm-12 controls text-center">
+                        <button type="submit" id="btn-login" class="btn btn-success btn-lg ">Login</button>
                     </div>
-                </form>
+                </spring:form>
+
             </div>
         </div>
 

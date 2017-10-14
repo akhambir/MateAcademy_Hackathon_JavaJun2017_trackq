@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -22,29 +23,30 @@
             <div class="panel-heading">
                 <div class="panel-title">Sign In</div>
                 <div style="float:right; font-size: 80%; position: relative; top:-20px"><a
-                        href="/root/forgot">Forgot password?</a></div>
+                        href="/forgot">Forgot password?</a></div>
             </div>
 
             <div style="padding-top:30px" class="panel-body">
 
-                <form id="loginform" class="form-horizontal" method="post"
-                      action="/login">
+                <%--@elvariable id="user" type="com.mate.trackq.model.User"--%>
+                <spring:form id="loginform" modelAttribute="user" method="post" action="/login">
 
                     <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input id="login-username" type="text" name="username" required placeholder="login" class="form-control">
+                        <spring:input path="username" class="form-control"
+                                      placeholder="username" id="login-username" type="text"/>
                     </div>
 
                     <div style="margin-bottom: 5px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input id="login-password" type="password" name="password" required placeholder="password" class="form-control">
+                        <spring:input path="password" class="form-control" id="login-password"/>
                     </div>
 
-                    <br>
                     <div class="col-sm-12 controls text-center">
-                        <button type="submit" id="btn-login" class="btn btn-primary btn-lg ">Login</button>
+                        <button type="submit" id="btn-login" class="btn btn-success btn-lg ">Login</button>
                     </div>
-                </form>
+                </spring:form>
+
             </div>
         </div>
     </div>
