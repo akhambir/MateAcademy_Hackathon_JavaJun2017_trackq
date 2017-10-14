@@ -52,7 +52,6 @@ public class AppConfig {
         return properties;
     }
 
-
     @Bean
     @Autowired
     public JpaTransactionManager jpaTransactionManager(EntityManagerFactory entityManagerFactory, DataSource dataSource) {
