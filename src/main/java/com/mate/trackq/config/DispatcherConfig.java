@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.mane.trackq")
+@ComponentScan("com.mate.trackq")
 public class DispatcherConfig extends WebMvcConfigurerAdapter {
 
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
