@@ -44,6 +44,14 @@ CREATE TABLE IF NOT EXISTS  trackq.user_email_confirmation (
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+CREATE TABLE IF NOT EXISTS  trackq.user_email_confirmation (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  confirmation_id VARCHAR(255),
+  user_id INT NOT NULL, role_id INT NOT NULL,
+  expiration_timestamp timestamp,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
 CREATE TABLE IF NOT EXISTS trackq.issue_to_assignee (
   id BIGINT PRIMARY KEY AUTO_INCREMENT,
   user_id BIGINT NOT NULL, issue_id BIGINT NOT NULL,
