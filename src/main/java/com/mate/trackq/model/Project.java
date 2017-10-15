@@ -5,17 +5,17 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "PROJECTS", schema = "trackq")
+@Table(name = "projects", schema = "trackq")
 public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "PROJECT_NAME")
+    @Column(name = "project_name")
     private String pName;
 
-    @Column(name = "DESCRIPTION")
+    @Column(name = "description")
     private String description;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "project")

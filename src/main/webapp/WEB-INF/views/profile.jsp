@@ -25,7 +25,7 @@
             <div class="user-info-block">
                 <div class="user-heading">
 
-                    <h3>Karan Singh Sisodia</h3>
+                    <h3>${user.username}</h3>
                 </div>
                 <div class="row">
                     <a href="#" class="btn btn-info">Edit profile</a>

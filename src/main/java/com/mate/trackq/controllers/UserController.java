@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.Principal;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -29,7 +30,14 @@ public class UserController {
     @Autowired
     private MailService mailService;
 
-    @RequestMapping(value = "/login", method = GET)
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    public ModelAndView profilePage(Principal principal){
+        User user = userService.findByUsername(principal.getName());
+        ModelAndView mv = new ModelAndView("profile", "user", user);
+        return mv;
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView loginPage(@RequestParam(value = "error", required = false) String error,
                                   @RequestParam(value = "logout", required = false) String logout) {
         ModelAndView model = new ModelAndView();
