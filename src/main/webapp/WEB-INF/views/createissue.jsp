@@ -18,7 +18,7 @@
 <div style="margin-top:150px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 panel-body panel panel-default">
     <h3 class="text-info text-center">Create Issue</h3>
 
-    <form id="addIssue" class="form-horizontal" method="post" action="/add-issue">
+    <form id="createIssue" class="form-horizontal" method="post" action="/create-issue">
 
         <label for="projectIssue">Select project to add issue</label>
 
