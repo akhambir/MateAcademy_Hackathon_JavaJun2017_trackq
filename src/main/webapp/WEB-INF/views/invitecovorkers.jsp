@@ -17,7 +17,7 @@
 
 <div style="margin-top:150px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 panel-body panel panel-default">
     <h3 class="text-info text-center">Invite your colleague</h3>
-    <form id="addCoworker" class="form-horizontal" method="post" action="/addCoworker">
+    <form id="inviteCoworker" class="form-horizontal" method="post" action="/invite-coworker">
 
         <label for="project">Select project to add coworker</label>
 
