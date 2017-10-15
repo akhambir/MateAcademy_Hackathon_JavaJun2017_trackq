@@ -2,7 +2,9 @@ package com.mate.trackq.controllers;
 
 import com.mate.trackq.exception.EmailExistsException;
 import com.mate.trackq.exception.UsernameExistsException;
+import com.mate.trackq.model.Project;
 import com.mate.trackq.model.User;
+import com.mate.trackq.service.ProjectService;
 import com.mate.trackq.service.UserService;
 import com.mate.trackq.util.DomainUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private ProjectService projectService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView loginPage(@RequestParam(value = "error", required = false) String error,
@@ -38,14 +42,25 @@ public class UserController {
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
-    public ModelAndView signUpPage() {
-        return new ModelAndView("signup", "user", new User());
+    public ModelAndView signUpPage(@RequestParam(value = "projectId", required = false, defaultValue = "null")
+                                           String projectId) {
+        ModelAndView mv = new ModelAndView("signup", "user", new User());
+        if (!projectId.equals("null")) {
+            mv.addObject("projectId", projectId);
+        }
+        return mv;
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public String signUp(HttpServletRequest request, @ModelAttribute User user) {
+    public String signUp(HttpServletRequest request,
+                         @ModelAttribute User user,
+                         @RequestParam(value = "projectId", required = false, defaultValue = "null")
+                                 String projectId) {
+        if (!projectId.equals("null")) {
+            Project project = projectService.getById(Long.parseLong(projectId));
+            user.addProject(project);
+        }
         User savedUser = userService.addNewUser(user);
-
         userService.sendConfirmationEmail(savedUser, DomainUtils.getUrl(request));
         return "redirect:/login";
     }
