@@ -29,7 +29,6 @@
 
                     <li <c:if test="${basic eq projects}">class="active"</c:if>>
                         <a href="/projects"><span class="glyphicon glyphicon-list-alt"></span>My projects</a></li>
-
                 </ul>
             </div>
         </div>

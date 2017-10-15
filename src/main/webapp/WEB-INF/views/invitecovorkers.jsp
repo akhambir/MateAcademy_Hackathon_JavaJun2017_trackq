@@ -17,13 +17,13 @@
 
 <div style="margin-top:150px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 panel-body panel panel-default">
     <h3 class="text-info text-center">Invite your colleague</h3>
-    <form id="addCoworker" class="form-horizontal" method="post" action="/addCoworker">
+    <form id="inviteCoworker" class="form-horizontal" method="post" action="/invite-coworker">
 
-        <label for="project">Select project to add coworker</label>
+        <label for="projects">Select projects to add coworker</label>
 
         <div style="margin-bottom: 20px" class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
-            <select id="project" name="project" class="form-control">
+            <select id="projects" name="projects" class="form-control">
                 <option value="1" selected="selected">one</option>
                 <option value="2">two</option>
                 <option value="3">three</option>
@@ -39,7 +39,7 @@
         </div>
 
         <div class="col-sm-12 controls text-center">
-            <button type="submit" id="btn-invite" class="btn btn-primary btn-md ">Invite</button>
+            <button type="submit" class="btn btn-primary btn-md ">Invite</button>
         </div>
     </form>
 </div>

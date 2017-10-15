@@ -3,6 +3,7 @@ package com.mate.trackq.controllers;
 import com.mate.trackq.model.Project;
 import com.mate.trackq.model.User;
 import com.mate.trackq.service.MailService;
+import com.mate.trackq.service.ProjectService;
 import com.mate.trackq.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,10 +22,12 @@ public class UserController {
     private MailService mailService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private ProjectService projectService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView loginPage(@RequestParam(value = "error",required = false) String error,
-                                  @RequestParam(value = "logout",	required = false) String logout) {
+    public ModelAndView loginPage(@RequestParam(value = "error", required = false) String error,
+                                  @RequestParam(value = "logout", required = false) String logout) {
         ModelAndView model = new ModelAndView();
         if (error != null) {
             model.addObject("error", "Invalid username or password.");
@@ -39,30 +42,21 @@ public class UserController {
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
-    public ModelAndView registration() {
-        return new ModelAndView("signup", "user", new User());
-    }
-
-    @RequestMapping(value = "/signupByLink", method = RequestMethod.GET)
-    public ModelAndView registration(@RequestParam("projectName") String projectName,
-                                     @RequestParam("projectCreatorHash") String projectCreatorHash ) {
+    public ModelAndView registration(@RequestParam(value = "projectId", required = false) String projectId) {
         ModelAndView mv = new ModelAndView("signup", "user", new User());
-        mv.addObject("projectName", projectName);
-        mv.addObject("projectCreatorHash", projectCreatorHash);
+        if (projectId != null) {
+            mv.addObject("projectId", projectId);
+        }
         return mv;
     }
-
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public ModelAndView registration(HttpServletRequest request, @ModelAttribute User user) {
+    public ModelAndView registration(HttpServletRequest request, @ModelAttribute User user, @RequestParam(value = "projectId", required = false) String projectId) {
         ModelAndView mv = new ModelAndView();
-        mailService.sendConfirmRegistrationEmail(userService.create(user), request.getServerName());
-        return mv;
-    }
-//todo
-    @RequestMapping(value = "/signupByLink", method = RequestMethod.POST)
-    public ModelAndView registration(HttpServletRequest request, @ModelAttribute User user, @RequestParam("project") String projectName) {
-        ModelAndView mv = new ModelAndView();
+        if (projectId != null) {
+            Project project = projectService.getById(Integer.parseInt(projectId));
+            user.addProject(project);
+        }
         userService.create(user);
         mailService.sendConfirmRegistrationEmail(user, request.getServerName());
         return mv;

@@ -32,13 +32,11 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User create(User user) {
-        long savedId = (long)sessionFactory.getCurrentSession().save(user);
         UserConfirmation confirmation = new UserConfirmation();
         confirmation.setConfirmationID(Hasher.getSha256(user.getEmail()));
         confirmation.setTimestamp(new Timestamp(System.currentTimeMillis()));
-        confirmation.getUser().setId(savedId);
-        sessionFactory.getCurrentSession().persist(confirmation);
-        user.setId(savedId);
+        confirmation.setUser(user);
+        sessionFactory.getCurrentSession().save(user);
         return user;
     }
 

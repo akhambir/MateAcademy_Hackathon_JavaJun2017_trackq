@@ -5,7 +5,7 @@ target/
 .apt_generated
 .classpath
 .factorypath
-.project
+.projects
 .settings
 .springBeans
 
