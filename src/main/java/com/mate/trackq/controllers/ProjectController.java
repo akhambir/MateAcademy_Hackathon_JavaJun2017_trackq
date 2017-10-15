@@ -32,7 +32,7 @@ public class ProjectController {
     public ModelAndView createProjectPost(@ModelAttribute Project project) {
         ModelAndView mv = new ModelAndView();
         projectService.create(project);
-        mv.setViewName("createproject");
+        mv.setViewName("index");
         return mv;
     }
 
@@ -43,9 +43,8 @@ public class ProjectController {
 
     @RequestMapping(value = "/addIssue", method = RequestMethod.POST)
     public ModelAndView createIssuePost(@ModelAttribute Issue issue) {
-        ModelAndView mv = new ModelAndView();
+        ModelAndView mv = new ModelAndView("index");
         issueService.createIssue(issue);
-        mv.setViewName("index");
         return mv;
     }
 
