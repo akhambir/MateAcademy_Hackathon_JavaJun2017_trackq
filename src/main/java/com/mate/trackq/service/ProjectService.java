@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface ProjectService {
 
-    void inviteMember(String email, Project project);
     void create(Project project);
 
+    Project getById(Integer projectId);
 }
