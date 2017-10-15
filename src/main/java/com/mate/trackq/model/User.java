@@ -18,7 +18,7 @@ public class User {
 
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Role.class, cascade = CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.LAZY, targetEntity = Role.class, cascade = CascadeType.ALL)
     @JoinTable(
             schema = "trackq",
             name = "user_to_role",
@@ -26,7 +26,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles;
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Project.class, cascade = CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.LAZY, targetEntity = Project.class, cascade = CascadeType.ALL)
     @JoinTable(
             schema = "trackq",
             name = "user_to_project",
