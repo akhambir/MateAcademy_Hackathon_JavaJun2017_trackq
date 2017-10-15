@@ -168,7 +168,7 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>4.2.0</version>
                 <configuration>
-                    <url>jdbc:h2:tcp://localhost/~/test</url>
+                    <url>jdbc:h2:tcp://localhost/~/trackq</url>
                     <user>sa</user>
                 </configuration>
                 <dependencies>

@@ -11,15 +11,15 @@ public class UserConfirmation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "id", cascade = CascadeType.ALL)
-    @Column(name = "USER_ID")
-    private Long userID;
-
     @Column(name = "EXPIRATION_TIMESTAMP")
     private Timestamp timestamp;
 
     @Column(name = "CONFIRMATION_ID")
     private String confirmationID;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn
+    private User user;
 
     public UserConfirmation() {}
 
@@ -29,14 +29,6 @@ public class UserConfirmation {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getUserID() {
-        return userID;
-    }
-
-    public void setUserID(Long userID) {
-        this.userID = userID;
     }
 
     public Timestamp getTimestamp() {
@@ -53,5 +45,13 @@ public class UserConfirmation {
 
     public void setConfirmationID(String confirmationID) {
         this.confirmationID = confirmationID;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
