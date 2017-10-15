@@ -31,7 +31,7 @@ public class IssueController {
     @RequestMapping(value = "/create-issue", method = RequestMethod.GET)
     public ModelAndView createIssueGet(Principal principal) {
         String username = principal.getName();
-        User user = userService.findByUserName(username);
+        User user = userService.findByUsername(username);
 
         List<Project> userProjects = projectService.getUserProjects(user.getId());
         List<User> projectUserList =  projectService.getProjectUserList();
