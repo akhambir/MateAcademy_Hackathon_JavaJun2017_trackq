@@ -18,8 +18,6 @@ CREATE TABLE IF NOT EXISTS trackq.projects (
   id BIGINT PRIMARY KEY AUTO_INCREMENT,
   project_name VARCHAR(30) NOT NULL,
   description VARCHAR(30),
-  project_id BIGINT NOT NULL UNIQUE,
-  FOREIGN KEY (project_id) REFERENCES projects(id),
   status VARCHAR(30) NOT NULL
 );
 

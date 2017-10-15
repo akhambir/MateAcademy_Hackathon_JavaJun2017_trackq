@@ -5,7 +5,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "PROJECT", schema = "trackq")
+@Table(name = "PROJECTS", schema = "trackq")
 public class Project {
 
     @Id

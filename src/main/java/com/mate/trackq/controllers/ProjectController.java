@@ -2,6 +2,7 @@ package com.mate.trackq.controllers;
 
 import com.mate.trackq.model.Issue;
 import com.mate.trackq.model.Project;
+import com.mate.trackq.model.Status;
 import com.mate.trackq.model.User;
 import com.mate.trackq.service.IssueService;
 import com.mate.trackq.service.MailService;
@@ -34,20 +35,9 @@ public class ProjectController {
     @RequestMapping(value = "/create-project", method = RequestMethod.POST)
     public ModelAndView createProjectPost(@ModelAttribute Project project) {
         ModelAndView mv = new ModelAndView();
+        project.setStatus(Status.OPEN);
         projectService.create(project);
-        mv.setViewName("redirect:/index");
-        return mv;
-    }
-
-    @RequestMapping(value = "/create-issue", method = RequestMethod.GET)
-    public ModelAndView createIssueGet() {
-        return new ModelAndView("createissue", "issue", new Issue());
-    }
-
-    @RequestMapping(value = "/addIssue", method = RequestMethod.POST)
-    public ModelAndView createIssuePost(@ModelAttribute Issue issue) {
-        ModelAndView mv = new ModelAndView("index");
-        issueService.createIssue(issue);
+        mv.setViewName("redirect:/");
         return mv;
     }
 
