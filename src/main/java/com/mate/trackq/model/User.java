@@ -1,24 +1,32 @@
 package com.mate.trackq.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "users", schema = "trackq")
+@JsonSerialize
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty
     private Long id;
 
     @Column(name = "username")
+    @JsonProperty
     private String username;
 
     @Column(name = "email")
+    @JsonProperty
     private String email;
 
     @Column(name = "password")
+    @JsonProperty
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY, targetEntity = Role.class, cascade = CascadeType.ALL)

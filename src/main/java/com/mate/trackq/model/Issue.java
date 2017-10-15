@@ -54,10 +54,6 @@ public class Issue {
         this.status = status;
     }
 
-    public void setAssignee(Set<User> tssignee) {
-        this.assignee = assignee;
-    }
-
     public User getReporter() {
         return reporter;
     }

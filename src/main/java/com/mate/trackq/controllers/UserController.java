@@ -41,8 +41,8 @@ public class UserController {
         return new ModelAndView("signup", "user", new User());
     }
 
-    @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public String signUp(HttpServletRequest request, @ModelAttribute User user) {
+    @RequestMapping(value = "/signup", method = RequestMethod.POST, consumes = "application/json")
+    public String signUp(HttpServletRequest request, @RequestBody User user) {
         User savedUser = userService.addNewUser(user);
 
         userService.sendConfirmationEmail(savedUser, DomainUtils.getUrl(request));

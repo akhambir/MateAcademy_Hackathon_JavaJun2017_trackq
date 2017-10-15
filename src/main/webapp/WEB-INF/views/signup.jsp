@@ -27,26 +27,26 @@
                 <form id="signup" method="post" action="/signup">
                     <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        <input class="form-control" placeholder="Email" id="email" type="email"/>
+                        <input form="signup" class="form-control" placeholder="Email" id="email" type="email"/>
                     </div>
 
                     <div style="margin-bottom: 15px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input class="form-control" placeholder="Username" id="login" type="text"/>
+                        <input form="signup" class="form-control" placeholder="Username" id="login" type="text"/>
                     </div>
 
                     <div style="margin-bottom: 15px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input class="form-control passwordCheck" placeholder="Password" id="password1" type="password"/>
+                        <input form="signup" class="form-control passwordCheck" placeholder="Password" id="password1" type="password"/>
                     </div>
 
                     <div style="margin-bottom: 15px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input class="form-control passwordCheck" placeholder="Confirm password" id="password2" type="password"/>
+                        <input form="signup" class="form-control passwordCheck" placeholder="Confirm password" id="password2" type="password"/>
                     </div>
 
                     <div class="col-sm-12 controls text-center">
-                        <button id="submitForm" type="submit" class="btn btn-success btn-lg">Login</button>
+                        <button form="signup" id="submitForm" type="submit" class="btn btn-success btn-lg">Login</button>
                     </div>
                 </form>
 

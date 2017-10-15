@@ -15,6 +15,7 @@
         <junit-version>4.12</junit-version>
         <com.h2-version>1.4.196</com.h2-version>
         <spring.security.version>4.2.3.RELEASE</spring.security.version>
+        <jackson.version>2.6.3</jackson.version>
     </properties>
 
     <dependencies>
@@ -154,6 +155,17 @@
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
             <version>1.4.7</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
 
     </dependencies>
