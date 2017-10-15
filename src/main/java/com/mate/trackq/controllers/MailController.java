@@ -15,7 +15,7 @@ public class MailController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/confirm-registration{hashedEmail}", method = RequestMethod.GET)
+    @RequestMapping(value = "/confirm-registration/{hashedEmail}", method = RequestMethod.GET)
     public ModelAndView confirmEmailGet(@PathVariable("hashedEmail") String hashedEmail, @RequestParam("id") Long id) {
         ModelAndView mv = new ModelAndView();
         userService.confirmEmail(hashedEmail, id);
