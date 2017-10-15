@@ -23,7 +23,7 @@ public class MailServiceImpl implements MailService {
     }
 
     @Override
-    public void sendInviteInProject(User user) {
+    public void sendInviteInProject(String email, Integer projectId) {
 
     }
 

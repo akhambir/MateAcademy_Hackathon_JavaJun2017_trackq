@@ -37,13 +37,12 @@ public class UserController {
         if (logout != null) {
             model.addObject("message", "Logged out successfully.");
         }
-
         model.setViewName("login");
         return model;
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
-    public ModelAndView registration(@RequestParam(value = "projectId", required = false) String projectId) {
+    public ModelAndView registration(@RequestParam(value = "projectId", required = false) Integer projectId) {
         ModelAndView mv = new ModelAndView("signup", "user", new User());
         if (projectId != null) {
             mv.addObject("projectId", projectId);
@@ -52,10 +51,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public ModelAndView registration(HttpServletRequest request, @ModelAttribute User user, @RequestParam(value = "projectId", required = false) String projectId) {
+    public ModelAndView registration(HttpServletRequest request, @ModelAttribute User user,
+                                     @RequestParam(value = "projectId", required = false) Integer projectId) {
         ModelAndView mv = new ModelAndView();
         if (projectId != null) {
-            Project project = projectService.getById(Integer.parseInt(projectId));
+            Project project = projectService.getById(projectId);
             user.addProject(project);
         }
         userService.create(user);
