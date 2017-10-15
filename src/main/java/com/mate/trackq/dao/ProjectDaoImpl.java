@@ -26,4 +26,12 @@ public class ProjectDaoImpl implements ProjectDao {
                 .uniqueResult();
     }
 
+    @Override
+    public Project getByName(String projectName) {
+        return (Project) sessionFactory.getCurrentSession()
+                .createQuery("from Project where name=:projectName")
+                .setParameter("projectName", projectName)
+                .uniqueResult();
+    }
+
 }

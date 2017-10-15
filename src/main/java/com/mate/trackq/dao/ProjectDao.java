@@ -9,4 +9,6 @@ public interface ProjectDao {
     void create(Project project);
 
     Project getById(Integer projectId);
+
+    Project getByName(String projectName);
 }
