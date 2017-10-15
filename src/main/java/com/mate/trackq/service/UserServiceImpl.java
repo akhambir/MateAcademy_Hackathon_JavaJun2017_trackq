@@ -80,11 +80,6 @@ public class UserServiceImpl implements UserService {
         mailService.sendConfirmRegistrationEmail(user, serverName);
     }
 
-    @Override
-    public User findByUserName(String username) {
-       return userDao.findByUsername(username);
-    }
-
     private void encodePassword(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
     }
