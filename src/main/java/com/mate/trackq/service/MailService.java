@@ -6,5 +6,5 @@ public interface MailService {
     void sendConfirmRegistrationEmail(User user, String hostname);
     void sendNewPasswordEmail(User user);
     void sendSimpleEmail(User user);
-    void sendInviteInProject(User user);
+    void sendInviteInProject(String email, Integer projectId);
 }
