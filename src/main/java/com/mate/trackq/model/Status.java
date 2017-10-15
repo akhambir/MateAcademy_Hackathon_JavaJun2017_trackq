@@ -1,5 +1,5 @@
 package com.mate.trackq.model;
 
 public enum Status {
-    OPEN,CLOSED;
+    OPEN,UPDATED,IN_DEVELOPMENT,DONE,CANCELED;
 }
