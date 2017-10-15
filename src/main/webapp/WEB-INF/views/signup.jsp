@@ -31,7 +31,7 @@
                     <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                         <spring:input path="email" class="form-control"
-                                      placeholder="username" id="email" type="email"/>
+                                      placeholder="username" type="email"/>
                     </div>
 
                     <div style="margin-bottom: 15px" class="input-group">
@@ -53,6 +53,8 @@
                     <div class="col-sm-12 controls text-center">
                         <button type="submit" class="btn btn-success btn-lg ">Login</button>
                     </div>
+
+                    <input type="hidden" name="projectId" value="${projectId}"></p>
                 </spring:form>
 
             </div>

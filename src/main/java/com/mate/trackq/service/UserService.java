@@ -6,7 +6,7 @@ import com.mate.trackq.model.User;
 
 public interface UserService {
 
-    User create(User user) throws UsernameExistsException, EmailExistsException;
+    User addNewUser(User user) throws UsernameExistsException, EmailExistsException;
 
     boolean usernameExists(String username);
 
@@ -17,5 +17,7 @@ public interface UserService {
     void resetPassword(User user);
 
     User findByEmail(String email);
+
+    void sendConfirmationEmail(User user, String serverName);
 
 }
