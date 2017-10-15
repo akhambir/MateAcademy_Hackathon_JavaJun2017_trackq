@@ -47,8 +47,7 @@ public class MailServiceImpl implements MailService {
 
     @Override
     public void sendNewPasswordEmail(User user, String hostname) {
-        //todo change link
-        String confirmationLink = hostname + "/confirm-registration/" + Hasher.getSha256(user.getEmail()) + "?id=" + user.getId();
+        String confirmationLink = hostname + "/change-password/" + Hasher.getSha256(user.getUsername());
         userService.resetPassword(user);
         String emailReceiver = user.getEmail();
         String subject = "Set new password";
