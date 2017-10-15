@@ -15,9 +15,9 @@ public class MailController {
     private UserService userService;
 
     @RequestMapping(value = "/confirm-registration", method = RequestMethod.GET)
-    public ModelAndView confirmEmailGet(@RequestParam("hashedEmail") String hashedEmail) {
+    public ModelAndView confirmEmailGet(@RequestParam("hashedEmail") String hashedEmail, @RequestParam("id") Long id) {
         ModelAndView mv = new ModelAndView();
-        userService.confirmEmail(hashedEmail);
+        userService.confirmEmail(hashedEmail, id);
         mv.setViewName("home");
         return mv;
     }

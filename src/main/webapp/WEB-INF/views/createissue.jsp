@@ -1,44 +1,23 @@
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Login</title>
+    <title>Create Issue</title>
     <meta charset="utf-8">
-    <link href="../../resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../resources/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/bootstrap-theme.min.css" rel="stylesheet">
 </head>
 <body>
+
 <div class="container">
-    <nav class="navbar navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1">
-                    <span class="glyphicon glyphicon-align-justify"></span>
-                </button>
-                <a class="navbar-brand" href="/root/home">TrackQ.com</a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-
-                    <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span>Signin</a></li>
-
-                    <li><a href="/signup"> <span class="glyphicon glyphicon-ok"></span>Signup</a></li>
-
-                    <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
-
-                    <li><a href="/profile"><span class="glyphicon glyphicon-user"></span>My profile</a></li>
-
-                    <li><a href="/projects"><span class="glyphicon glyphicon-list-alt"></span>My projects</a></li>
-
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <t:navbar basic="projects"/>
 </div>
 
 <div style="margin-top:150px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 panel-body panel panel-default">
     <h3 class="text-info text-center">Create Issue</h3>
+
     <form id="addIssue" class="form-horizontal" method="post" action="/addIssue">
 
         <label for="projectIssue">Select project to add issue</label>
@@ -78,12 +57,11 @@
             <button type="submit" id="createissue" class="btn btn-primary btn-md ">Invite</button>
         </div>
     </form>
+
 </div>
 
 <!-- jQuery -->
-<script src="../../resources/js/jquery-3.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
-<script src="../../resources/js/bootstrap.min.js"></script>
-
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
-</html>

@@ -16,5 +16,5 @@ public interface UserDao {
 
     User findByEmail(String email);
 
-    void confirmEmail(String hashedEmail);
+    boolean confirmEmail(String hashedEmail, Long id);
 }

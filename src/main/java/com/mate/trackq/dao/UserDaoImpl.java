@@ -1,10 +1,14 @@
 package com.mate.trackq.dao;
 
 import com.mate.trackq.model.User;
+import com.mate.trackq.model.UserConfirmation;
+import com.mate.trackq.util.Hasher;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.sql.Timestamp;
 
 @Repository
 @Transactional
@@ -28,7 +32,13 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User create(User user) {
-        sessionFactory.getCurrentSession().persist(user);
+        long savedId = (long)sessionFactory.getCurrentSession().save(user);
+        UserConfirmation confirmation = new UserConfirmation();
+        confirmation.setConfirmationID(Hasher.getSha256(user.getEmail()));
+        confirmation.setTimestamp(new Timestamp(System.currentTimeMillis()));
+        confirmation.setUserID(savedId);
+        sessionFactory.getCurrentSession().persist(confirmation);
+        user.setId(savedId);
         return user;
     }
 
@@ -38,8 +48,14 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void confirmEmail(String hashedEmail) {
-
+    public boolean confirmEmail(String hashedEmail, Long id) {
+        UserConfirmation confirmation = sessionFactory.getCurrentSession().get(UserConfirmation.class, id);
+        if(confirmation != null && hashedEmail.equals(confirmation.getConfirmationID())) {
+            if(confirmation.getTimestamp().after(new Timestamp(System.currentTimeMillis()))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
