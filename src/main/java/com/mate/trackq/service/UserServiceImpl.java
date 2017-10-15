@@ -43,10 +43,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User addNewUser(User user) throws UsernameExistsException, EmailExistsException {
         if (usernameExists(user.getUsername())) {
-            throw new UsernameExistsException();
+            throw new UsernameExistsException("Username is already exist.");
         }
         if (emailExists(user.getEmail())) {
-            throw new EmailExistsException();
+            throw new EmailExistsException("Email is already exist");
         }
         setDefaultRole(user);
         encodePassword(user);

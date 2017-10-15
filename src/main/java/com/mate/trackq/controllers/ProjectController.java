@@ -7,6 +7,7 @@ import com.mate.trackq.service.IssueService;
 import com.mate.trackq.service.MailService;
 import com.mate.trackq.service.ProjectService;
 import com.mate.trackq.service.UserService;
+import com.mate.trackq.util.DomainUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -54,9 +55,9 @@ public class ProjectController {
     @RequestMapping(value = "/invite-coworker", method = RequestMethod.POST)
     public ModelAndView inviteCoworker(@RequestParam("projectId") Integer projectId,
                                        @RequestParam("userEmail") String userEmail,
-                                       HttpServletRequest httpServletRequest) {
+                                       HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
-        mailService.sendInviteInProject(userEmail, projectId, httpServletRequest.getServerName());
+        mailService.sendInviteInProject(userEmail, projectId, DomainUtils.getUrl(request));
         mv.setViewName("index");
         return mv;
     }

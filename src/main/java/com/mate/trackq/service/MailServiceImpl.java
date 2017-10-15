@@ -18,11 +18,6 @@ public class MailServiceImpl implements MailService {
     private UserService userService;
 
     @Override
-    public void sendSimpleEmail(User user) {
-
-    }
-
-    @Override
     public void sendInviteInProject(String email, Integer projectId, String hostname) {
         String confirmationLink = hostname + "/" + projectId + "?userEmail=" + email;
         String subject = "E-Mail confirmation TrackQ";
@@ -38,11 +33,11 @@ public class MailServiceImpl implements MailService {
 
     @Override
     public void sendConfirmRegistrationEmail(User user, String hostname) {
-        String confirmationLink = hostname + "/confirm-registration/" + Hasher.getSha256(user.getEmail()) + "?id=" + user.getId();
+        String confirmationLink = "http://" + hostname + "/confirm-registration/" + Hasher.getSha256(user.getEmail()) + "?id=" + user.getId();
         String emailReceiver = user.getEmail();
         String subject = "E-Mail confirmation TrackQ";
-        String messageText = "Hello, " + user.getUsername() + " please, confirm, your E-Mail, by link below" +
-                HtmlUtils.buildHrefTag(confirmationLink) + " Regards  TrackQ team!";
+        String messageText = "Hello, " + user.getUsername() + " please, confirm, your E-Mail, by link below\n" +
+                confirmationLink + "\n Regards  TrackQ team!";
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(emailReceiver);
         message.setSubject(subject);
@@ -51,11 +46,14 @@ public class MailServiceImpl implements MailService {
     }
 
     @Override
-    public void sendNewPasswordEmail(User user) {
+    public void sendNewPasswordEmail(User user, String hostname) {
+        //todo change link
+        String confirmationLink = hostname + "/confirm-registration/" + Hasher.getSha256(user.getEmail()) + "?id=" + user.getId();
         userService.resetPassword(user);
         String emailReceiver = user.getEmail();
-        String subject = "Your new password";
-        String messageText = user.getUsername()+ ", here is your new password " + user.getPassword();
+        String subject = "Set new password";
+        String messageText = user.getUsername()+ " please, set your new password, by link below " +
+                HtmlUtils.buildHrefTag(confirmationLink) + " Regards  TrackQ team!";
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(emailReceiver);
         message.setSubject(subject);
