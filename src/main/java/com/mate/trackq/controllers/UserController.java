@@ -1,6 +1,5 @@
 package com.mate.trackq.controllers;
 
-import com.mate.trackq.model.Project;
 import com.mate.trackq.model.User;
 import com.mate.trackq.service.MailService;
 import com.mate.trackq.service.ProjectService;
