@@ -13,28 +13,22 @@ public class Issue {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "issue_name")
+    private String issueName;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Project project;
+
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = User.class, cascade = CascadeType.MERGE)
-    @JoinTable(
-            schema = "trackq",
-            name = "issue_to_assignee",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "issue_id")
-    )
-    private Set<User> assignee;
+    @OneToOne(fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn
+    private User reporter;
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = User.class, cascade = CascadeType.MERGE)
-    @JoinTable(
-            schema = "trackq",
-            name = "issue_to_reporter",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "issue_id")
-    )
-    private Set<User> reporter;
+    @OneToOne(fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn
+    private User assignee;
 
     public Long getId() {
         return id;
@@ -60,19 +54,31 @@ public class Issue {
         this.status = status;
     }
 
-    public Set<User> getAssignee() {
-        return assignee;
-    }
-
     public void setAssignee(Set<User> tssignee) {
         this.assignee = assignee;
     }
 
-    public Set<User> getReporter() {
+    public User getReporter() {
         return reporter;
     }
 
-    public void setReporter(Set<User> reporter) {
+    public void setReporter(User reporter) {
         this.reporter = reporter;
+    }
+
+    public User getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(User assignee) {
+        this.assignee = assignee;
+    }
+
+    public String getIssueName() {
+        return issueName;
+    }
+
+    public void setIssueName(String issueName) {
+        this.issueName = issueName;
     }
 }

@@ -12,10 +12,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "username")
     private String username;
 
+    @Column(name = "email")
     private String email;
 
+    @Column(name = "password")
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY, targetEntity = Role.class, cascade = CascadeType.ALL)
@@ -26,7 +29,8 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles;
-    @ManyToMany(fetch = FetchType.LAZY, targetEntity = Project.class, cascade = CascadeType.ALL)
+
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Project.class, cascade = CascadeType.ALL)
     @JoinTable(
             schema = "trackq",
             name = "user_to_project",
@@ -77,7 +81,6 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-
 
     public List<Project> getProjects() {
         return projects;

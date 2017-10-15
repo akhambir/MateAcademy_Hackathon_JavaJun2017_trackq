@@ -26,12 +26,12 @@
             <div style="padding-top:30px" class="panel-body">
 
                 <%--@elvariable id="user" type="com.mate.trackq.model.User"--%>
-                <form name="login" action="<c:url value="/login"/>" id="loginform" method="post" >
+                <form name="login" action="<c:url value="/login"/>" id="loginform" method="post">
 
                     <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <input name="username" class="form-control"
-                                      placeholder="username" id="login-username" type="text"/>
+                               placeholder="username" id="login-username" type="text"/>
                     </div>
 
                     <div style="margin-bottom: 5px" class="input-group">
@@ -39,10 +39,15 @@
                         <input type="password" name="password" class="form-control" id="login-password"/>
                     </div>
 
+                    <div style="margin-bottom: 5px" class="input-group">
+                        <c:if test="${not empty _csrf.error}"><label
+                                class="text-danger">${not empty _csrf.error}</label></c:if>
+                    </div>
+
                     <div class="col-sm-12 controls text-center">
                         <button type="submit" class="btn btn-success btn-lg ">Login</button>
                     </div>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </form>
 
             </div>

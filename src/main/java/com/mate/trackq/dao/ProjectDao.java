@@ -8,7 +8,7 @@ public interface ProjectDao {
 
     void create(Project project);
 
-    Project getById(Integer projectId);
+    Project getById(Long projectId);
 
     Project getByName(String projectName);
 }

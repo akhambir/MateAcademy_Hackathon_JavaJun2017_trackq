@@ -1,5 +1,6 @@
 package com.mate.trackq.dao;
 
+import com.mate.trackq.dao.IssueDao;
 import com.mate.trackq.model.Issue;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,6 @@ public class IssueDaoImpl implements IssueDao {
 
     @Override
     public void createIssue(Issue issue) {
-        sessionFactory.getCurrentSession().persist(issue);
+        sessionFactory.getCurrentSession().save(issue);
     }
 }
