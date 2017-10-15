@@ -24,7 +24,8 @@
 
                 <div style="margin-bottom: 25px" class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
-                    <spring:input path="pName" id="projectName" type="text" name="projectName" required = "true"
+                    <spring:input path="pName" id="projectName" type="text" name="projectName"
+                                  required = "true"
                            placeholder="projects name" class="form-control"/>
                 </div>
 

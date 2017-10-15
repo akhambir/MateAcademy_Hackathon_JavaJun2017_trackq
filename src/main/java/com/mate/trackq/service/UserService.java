@@ -20,4 +20,5 @@ public interface UserService {
 
     void sendConfirmationEmail(User user, String serverName);
 
+    User findByUserName(String username);
 }
