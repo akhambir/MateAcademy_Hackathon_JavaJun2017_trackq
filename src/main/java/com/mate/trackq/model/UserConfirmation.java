@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "user_email_confirmation ", schema = "trackq")
+@Table(name = "user_email_confirmation", schema = "trackq")
 public class UserConfirmation {
 
     @Id
@@ -53,5 +53,6 @@ public class UserConfirmation {
 
     public void setUser(User user) {
         this.user = user;
+        this.user.setUserConfirmation(this);
     }
 }
