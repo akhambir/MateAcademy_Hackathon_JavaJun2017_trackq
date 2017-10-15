@@ -9,12 +9,19 @@
 <body>
 
 <div class="panel-body panel panel-info">
-    <h4 class="text-info text-center"><span class="badge" STYLE="background: red">Status</span> Task Name <span class="badge">Assignee</span></h4>
-
+    <h4 class="text-info text-center"><span class="badge" STYLE="background: red">Status</span> Task Name <span
+            class="badge">Assignee</span></h4>
+    <br>
+    <form action="\updateIssue" method="post">
+        <input type="number" hidden value="issueId" name="issueId">
         <div style="margin-bottom: 15px">
-            <textarea id="issueDescription" name="issueDescription" rows="4" class="form-control" content="issue_content"></textarea>
+            <textarea id="issueDescription" name="issueDescription" rows="4" class="form-control text-center"
+                      content="issue_content"></textarea>
         </div>
-
+        <div class="text-center">
+            <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-refresh"></span></button>
+        </div>
+    </form>
 </div>
 
 
