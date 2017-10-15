@@ -41,7 +41,7 @@
 
                     <div style="margin-bottom: 5px" class="input-group">
                         <c:if test="${not empty error}"><label
-                                class="text-danger">${error}</label></c:if>
+                                class="text-danger">${not empty error}</label></c:if>
                     </div>
 
                     <div class="col-sm-12 controls text-center">

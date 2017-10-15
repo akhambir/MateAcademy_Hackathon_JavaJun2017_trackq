@@ -6,6 +6,7 @@ import com.mate.trackq.exception.EmailExistsException;
 import com.mate.trackq.exception.UsernameExistsException;
 import com.mate.trackq.model.Role;
 import com.mate.trackq.model.User;
+import com.mate.trackq.util.Hasher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -81,5 +82,22 @@ public class UserServiceImpl implements UserService {
 
     private void encodePassword(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return userDao.findByUsername(username);
+    }
+
+    @Override
+    public void sendChangePasswordURL(User user) {
+        //TODO Send change password URL. Example: '/change-password/qweroij123skw'
+        String secret = Hasher.getSha256(user.getUsername());
+    }
+
+    @Override
+    public boolean checkChangePasswordSecret(User user, String secret) {
+        String userSecret = Hasher.getSha256(user.getUsername());
+        return userSecret.equals(secret);
     }
 }
