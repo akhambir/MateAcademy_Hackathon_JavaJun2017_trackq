@@ -17,7 +17,7 @@ public class Project {
     private String description;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "project")
     private List<Issue> issues;
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "project")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "projects")
     private List<User> users;
     @Enumerated(EnumType.STRING)
     private Status status;
