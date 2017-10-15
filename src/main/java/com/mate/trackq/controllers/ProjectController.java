@@ -32,7 +32,7 @@ public class ProjectController {
     public ModelAndView createProjectPost(@ModelAttribute Project project) {
         ModelAndView mv = new ModelAndView();
         projectService.create(project);
-        mv.setViewName("index");
+        mv.setViewName("redirect:/index");
         return mv;
     }
 
