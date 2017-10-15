@@ -33,7 +33,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "project_id")
     )
-    private List<Project> project;
+    private List<Project> projects;
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     private UserConfirmation userConfirmation;
@@ -79,12 +79,16 @@ public class User {
     }
 
 
-    public List<Project> getProject() {
-        return project;
+    public List<Project> getProjects() {
+        return projects;
     }
 
-    public void setProject(List<Project> project) {
-        this.project = project;
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
+    public void addProject(Project project) {
+        this.projects.add(project);
     }
 
     public UserConfirmation getUserConfirmation() {

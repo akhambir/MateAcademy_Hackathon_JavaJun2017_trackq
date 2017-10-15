@@ -1,7 +1,6 @@
 package com.mate.trackq.dao;
 
 import com.mate.trackq.model.Project;
-import com.mate.trackq.model.User;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,6 +16,14 @@ public class ProjectDaoImpl implements ProjectDao {
     @Override
     public void create(Project project) {
         sessionFactory.getCurrentSession().save(project);
+    }
+
+    @Override
+    public Project getById(Integer projectId) {
+        return (Project) sessionFactory.getCurrentSession()
+                .createQuery("from Project where id=:projectId")
+                .setParameter("projectId", projectId)
+                .uniqueResult();
     }
 
 }

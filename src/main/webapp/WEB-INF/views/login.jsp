@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="col-sm-12 controls text-center">
-                        <button type="submit" id="btn-login" class="btn btn-success btn-lg ">Login</button>
+                        <button type="submit" class="btn btn-success btn-lg ">Login</button>
                     </div>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                 </form>
