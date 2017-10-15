@@ -1,5 +1,7 @@
 package com.mate.trackq.controllers;
 
+import com.mate.trackq.exception.EmailExistsException;
+import com.mate.trackq.exception.UsernameExistsException;
 import com.mate.trackq.model.Project;
 import com.mate.trackq.model.Role;
 import com.mate.trackq.model.User;
@@ -8,10 +10,7 @@ import com.mate.trackq.service.ProjectService;
 import com.mate.trackq.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,23 +42,28 @@ public class UserController {
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
-    public ModelAndView registration(@RequestParam(value = "projectId", required = false) String projectId) {
-        ModelAndView mv = new ModelAndView("signup", "user", new User());
-        if (projectId != null) {
-            mv.addObject("projectId", projectId);
-        }
-        return mv;
+    public ModelAndView signUpPage() {
+        return new ModelAndView("signup", "user", new User());
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public ModelAndView registration(HttpServletRequest request, @ModelAttribute User user, @RequestParam(value = "projectId", required = false) String projectId) {
-        ModelAndView mv = new ModelAndView();
-        if (projectId != null) {
-            Project project = projectService.getById(Integer.parseInt(projectId));
-            user.addProject(project);
-        }
-        userService.create(user);
-        mailService.sendConfirmRegistrationEmail(user, request.getServerName());
+    public ModelAndView signUp(HttpServletRequest request, @ModelAttribute User user) {
+        ModelAndView mv = new ModelAndView("signup");
+        User savedUser = userService.create(user);
+        mailService.sendConfirmRegistrationEmail(savedUser, request.getServerName());
+        mv.addObject("message", "Confirmation email sent.");
         return mv;
+    }
+
+    //TODO Check username on frontend
+    @ExceptionHandler(UsernameExistsException.class)
+    public ModelAndView usernameExistsHandler() {
+        return new ModelAndView("signup", "error", "Username already exists.");
+    }
+
+    //TODO Check email on frontend
+    @ExceptionHandler(EmailExistsException.class)
+    public ModelAndView emailExistsHandler() {
+        return new ModelAndView("signup", "error", "Email already exists.");
     }
 }
