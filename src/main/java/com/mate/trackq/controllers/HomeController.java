@@ -13,8 +13,13 @@ public class HomeController {
         return new ModelAndView("index");
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView index() {
+        return new ModelAndView("index");
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView empty() {
         return new ModelAndView("index");
     }
 }
