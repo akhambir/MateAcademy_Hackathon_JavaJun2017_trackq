@@ -25,6 +25,13 @@ public class UserController {
     @Autowired
     private ProjectService projectService;
 
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    public ModelAndView profilePage(Principal principal){
+        User user = userService.findByUsername(principal.getName());
+        ModelAndView mv = new ModelAndView("profile", "user", user);
+        return mv;
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView loginPage(@RequestParam(value = "error", required = false) String error,
                                   @RequestParam(value = "logout", required = false) String logout) {
