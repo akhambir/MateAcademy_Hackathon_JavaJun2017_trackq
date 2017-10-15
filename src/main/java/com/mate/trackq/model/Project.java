@@ -11,14 +11,19 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "PROJECT_NAME")
     private String pName;
+
     @Column(name = "DESCRIPTION")
     private String description;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "project")
     private List<Issue> issues;
+
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "projects")
     private List<User> users;
+
     @Enumerated(EnumType.STRING)
     private Status status;
 
