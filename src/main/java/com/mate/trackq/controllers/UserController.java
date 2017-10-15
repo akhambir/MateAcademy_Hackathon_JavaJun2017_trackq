@@ -1,6 +1,7 @@
 package com.mate.trackq.controllers;
 
 import com.mate.trackq.model.Project;
+import com.mate.trackq.model.Role;
 import com.mate.trackq.model.User;
 import com.mate.trackq.service.MailService;
 import com.mate.trackq.service.ProjectService;
@@ -59,15 +60,5 @@ public class UserController {
         userService.create(user);
         mailService.sendConfirmRegistrationEmail(user, request.getServerName());
         return mv;
-    }
-
-    @RequestMapping(method = RequestMethod.GET, value = "/init")
-    public String test() {
-        User user = new User();
-        user.setUsername("user");
-        user.setEmail("test@test.com");
-        user.setPassword("test");
-        userService.create(user);
-        return "";
     }
 }

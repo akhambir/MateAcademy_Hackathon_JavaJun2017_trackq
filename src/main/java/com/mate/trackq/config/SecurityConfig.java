@@ -20,12 +20,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private DataSource dataSource;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
     public void configureGlobal(AuthenticationManagerBuilder authenticationMgr) throws Exception {
         authenticationMgr.jdbcAuthentication().dataSource(dataSource)
-                .passwordEncoder(passwordEncoder)
+                .passwordEncoder(passwordEncoder())
                 .usersByUsernameQuery("SELECT username, password, enabled " +
                                         "FROM trackq.users " +
                                         "WHERE username=?")
@@ -39,14 +36,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/homePage").access("hasRole('ROLE_USER')")
+                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
                 .and()
                 .formLogin().loginPage("/login")
                 .defaultSuccessUrl("/login")
                 .failureUrl("/login?error")
                 .usernameParameter("username").passwordParameter("password")
                 .and()
-                .logout().logoutSuccessUrl("/login?logout");
+                .logout().logoutSuccessUrl("/login?logout")
+                .and()
+                .exceptionHandling().accessDeniedPage("/403")
+                .and()
+                .csrf();
     }
 
     @Bean
