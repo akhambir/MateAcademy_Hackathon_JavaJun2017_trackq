@@ -20,11 +20,11 @@
 
     <form id="createIssue" class="form-horizontal" method="post" action="/create-issue">
 
-        <label for="projectIssue">Select project to add issue</label>
+        <label for="projectIssue">Select projects to add issue</label>
 
         <div style="margin-bottom: 20px" class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
-            <select id="projectIssue" name="project" class="form-control">
+            <select id="projectIssue" name="projects" class="form-control">
                 <option value="1" selected="selected">one</option>
                 <option value="2">two</option>
                 <option value="3">three</option>

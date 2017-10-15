@@ -19,17 +19,17 @@
         <div style="margin-top:150px;"
              class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 panel-body panel panel-default">
             <h3 class="text-info text-center">Create Project</h3>
-            <form id="createProject" class="form-horizontal" method="post" action="/create-project">
+            <form id="createProject" class="form-horizontal" method="post" action="/create-projects">
 
                 <div style="margin-bottom: 25px" class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
                     <input id="projectName" type="text" name="projectName" required
-                           placeholder="project name" class="form-control">
+                           placeholder="projects name" class="form-control">
                 </div>
 
                 <div style="margin-bottom: 15px">
                             <textarea id="projectDescription" name="projectDescription" rows="4" class="form-control"
-                                      placeholder="enter project description"></textarea>
+                                      placeholder="enter projects description"></textarea>
                 </div>
 
                 <div class="col-sm-12 controls text-center">

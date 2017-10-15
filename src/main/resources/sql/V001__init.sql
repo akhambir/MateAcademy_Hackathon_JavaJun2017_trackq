@@ -14,19 +14,19 @@ CREATE TABLE IF NOT EXISTS trackq.roles (
   rolename VARCHAR(30) NOT NULL UNIQUE
 );
 
-CREATE TABLE IF NOT EXISTS trackq.project (
+CREATE TABLE IF NOT EXISTS trackq.projects (
   id BIGINT PRIMARY KEY AUTO_INCREMENT,
   project_name VARCHAR(30) NOT NULL,
   description VARCHAR(30),
   project_id BIGINT NOT NULL UNIQUE,
-  FOREIGN KEY (project_id) REFERENCES project(id),
+  FOREIGN KEY (project_id) REFERENCES projects(id),
   status VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS trackq.issues (
   id BIGINT PRIMARY KEY AUTO_INCREMENT,
   project_id BIGINT NOT NULL UNIQUE,
-  FOREIGN KEY (project_id) REFERENCES project(id),
+  FOREIGN KEY (project_id) REFERENCES projects(id),
   status VARCHAR(30) NOT NULL
 );
 
@@ -63,5 +63,5 @@ CREATE TABLE IF NOT EXISTS trackq.user_to_project (
   id BIGINT PRIMARY KEY AUTO_INCREMENT,
   user_id BIGINT NOT NULL, project_id BIGINT NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users(id),
-  FOREIGN KEY (project_id) REFERENCES project(id)
+  FOREIGN KEY (project_id) REFERENCES projects(id)
 );
