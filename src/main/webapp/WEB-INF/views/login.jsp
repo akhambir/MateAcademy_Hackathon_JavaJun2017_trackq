@@ -40,8 +40,8 @@
                     </div>
 
                     <div style="margin-bottom: 5px" class="input-group">
-                        <c:if test="${not empty _csrf.error}"><label
-                                class="text-danger">${not empty _csrf.error}</label></c:if>
+                        <c:if test="${not empty error}"><label
+                                class="text-danger">${not empty error}</label></c:if>
                     </div>
 
                     <div class="col-sm-12 controls text-center">
