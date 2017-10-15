@@ -20,5 +20,9 @@ public interface UserService {
 
     void sendConfirmationEmail(User user, String serverName);
 
-    User findByUserName(String username);
+    User findByUsername(String username);
+
+    void sendChangePasswordURL(User user);
+
+    boolean checkChangePasswordSecret(User user, String uri);
 }

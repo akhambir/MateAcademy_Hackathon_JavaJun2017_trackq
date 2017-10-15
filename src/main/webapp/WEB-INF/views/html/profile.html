@@ -1,38 +1,78 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:spring="http://www.w3.org/1999/html">-->
-<!--<head>-->
-    <!--<meta charset="UTF-8">-->
-    <!--<title>Title</title>-->
-<!--</head>-->
-<!--<body>-->
+<!DOCTYPE html>
+<html lang="en" xmlns:spring="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <title>Login</title>
+    <meta charset="utf-8">
+    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../resources/css/bootstrap-theme.min.css" rel="stylesheet">
+</head>
+<body>
 
+<div class="container">
+    <nav class="navbar navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </button>
+                <a class="navbar-brand" href="/root/home">TrackQ.com</a>
+            </div>
 
-<!--<form class="form-horizontal" method="get" action="/editProfile">-->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
 
+                    <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span>Signin</a></li>
 
-    <!--<div class="form-group">-->
-        <!--<div class="col-md-6 text-right">-->
-            <!--<label>User name</label>-->
-        <!--</div>-->
-        <!--<div class="col-md-6">-->
-            <!--<input name="">-->
-        <!--</div>-->
-    <!--</div>-->
+                    <li><a href="/signup"> <span class="glyphicon glyphicon-ok"></span>Signup</a></li>
 
+                    <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
 
-    <!--<div class="form-group">-->
-        <!--<div class="col-md-6 text-right">-->
-            <!--<label>My district </label>-->
-        <!--</div>-->
-        <!--<div class="col-md-6">-->
-            <!--<label>edit your country district</label>-->
-        <!--</div>-->
-    <!--</div>-->
+                    <li><a href="/profile"><span class="glyphicon glyphicon-user"></span>My profile</a></li>
 
+                    <li><a href="/projects"><span class="glyphicon glyphicon-list-alt"></span>My projects</a></li>
 
-    <!--<button type="submit" class="btn btn-warning btn-lg center-block"> Edit profile</button>-->
-<!--</form>-->
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
 
+<div style="margin-top:100px;"
+     class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 panel-body panel panel-default">
+    <div class="container-fluid text-center">
+        <div class="row">
+            <div class="user-image">
+                <img src="http://www.gravatar.com/avatar/2ab7b2009d27ec37bffee791819a090c?s=100&d=mm&r=g"
+                     class="img-circle">
+            </div>
+            <div class="user-info-block">
+                <div class="user-heading">
 
-<!--</body>-->
-<!--</html>-->
+                    <h3>Karan Singh Sisodia</h3>
+                </div>
+                <div class="row">
+                    <a href="#" class="btn btn-info">Edit profile</a>
+
+                    <a href="#" class="btn btn-info">Upload photo</a>
+
+                    <a href="#" class="btn btn-info">Check my tasks</a>
+
+                    <a href="#" class="btn btn-info">Check my projects</a>
+                </div>
+
+                <div style="margin-top: 20px">
+                    <label>Select your color</label> <input type="color">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- jQuery -->
+<script src="../../../resources/js/jquery-3.2.1.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../resources/js/bootstrap.min.js"></script>
+</body>
+</html>
