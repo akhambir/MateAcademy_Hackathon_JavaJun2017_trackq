@@ -19,8 +19,8 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <div class="panel-title">Sign In</div>
-                <div style="float:right; font-size: 80%; position: relative; top:-20px"><a
-                        href="/forgot">Forgot password?</a></div>
+                <div style="float:right; font-size: 80%; position: relative; top:-20px">
+                    <a href="/forgot" style="color: white;font-size: 9pt">Forgot password?</a></div>
             </div>
 
             <div style="padding-top:30px" class="panel-body">
@@ -40,8 +40,8 @@
                     </div>
 
                     <div style="margin-bottom: 5px" class="input-group">
-                        <c:if test="${not empty _csrf.error}"><label
-                                class="text-danger">${not empty _csrf.error}</label></c:if>
+                        <c:if test="${not empty error}"><label
+                                class="text-danger">${error}</label></c:if>
                     </div>
 
                     <div class="col-sm-12 controls text-center">
