@@ -25,9 +25,9 @@
 
 
                     <div class="form-group">
-                        <label for="login" class="col-md-3 control-label">Login</label>
+                        <label for="email" class="col-md-3 control-label">Email</label>
                         <div class="col-md-9">
-                            <label id="login" class="form-control">UserName</label>
+                            <input type="email" required id="email" name="email" placeholder="Email" class="form-control">
                         </div>
                     </div>
 
