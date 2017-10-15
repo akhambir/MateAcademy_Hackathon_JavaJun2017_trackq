@@ -36,7 +36,7 @@ public class UserDaoImpl implements UserDao {
         UserConfirmation confirmation = new UserConfirmation();
         confirmation.setConfirmationID(Hasher.getSha256(user.getEmail()));
         confirmation.setTimestamp(new Timestamp(System.currentTimeMillis()));
-        confirmation.setUserID(savedId);
+        confirmation.getUser().setId(savedId);
         sessionFactory.getCurrentSession().persist(confirmation);
         user.setId(savedId);
         return user;

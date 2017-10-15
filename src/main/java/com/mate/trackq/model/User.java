@@ -10,8 +10,6 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @OneToOne(fetch = FetchType.LAZY)
-    @PrimaryKeyJoinColumn
     private Long id;
 
     private String username;
@@ -36,6 +34,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "project_id")
     )
     private List<Project> project;
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    private UserConfirmation userConfirmation;
 
     public Long getId() {
         return id;
@@ -75,5 +76,22 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+
+    public List<Project> getProject() {
+        return project;
+    }
+
+    public void setProject(List<Project> project) {
+        this.project = project;
+    }
+
+    public UserConfirmation getUserConfirmation() {
+        return userConfirmation;
+    }
+
+    public void setUserConfirmation(UserConfirmation userConfirmation) {
+        this.userConfirmation = userConfirmation;
     }
 }
