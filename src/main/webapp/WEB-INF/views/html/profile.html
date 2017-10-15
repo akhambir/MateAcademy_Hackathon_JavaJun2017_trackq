@@ -3,36 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <title>Login</title>
+    <meta charset="utf-8">
+    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../resources/css/bootstrap-theme.min.css" rel="stylesheet">
 </head>
 <body>
 
+<div class="container">
+    <nav class="navbar navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </button>
+                <a class="navbar-brand" href="/root/home">TrackQ.com</a>
+            </div>
 
-<form class="form-horizontal" method="get" action="/editProfile">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
 
+                    <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span>Signin</a></li>
 
-    <div class="form-group">
-        <div class="col-md-6 text-right">
-            <label>User name</label>
+                    <li><a href="/signup"> <span class="glyphicon glyphicon-ok"></span>Signup</a></li>
+
+                    <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+
+                    <li><a href="/profile"><span class="glyphicon glyphicon-user"></span>My profile</a></li>
+
+                    <li><a href="/projects"><span class="glyphicon glyphicon-list-alt"></span>My projects</a></li>
+
+                </ul>
+            </div>
         </div>
-        <div class="col-md-6">
-            <input name="">
+    </nav>
+</div>
+
+<div class="container-fluid">
+<div class="container mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" style="margin-top: 150px">
+    <div class="row">
+        <div class="col-sm-4 col-md-4 user-details">
+            <div class="user-image">
+                <img src="http://www.gravatar.com/avatar/2ab7b2009d27ec37bffee791819a090c?s=100&d=mm&r=g"
+                     class="img-circle" style="height: 200px">
+            </div>
+            <div class="user-info-block">
+                <div class="user-heading">
+                    <h3>Karan Singh Sisodia</h3>
+                    <span class="help-block">Chandigarh, IN</span>
+                </div>
+                <ul class="navigation">
+                    <li class="active">
+                        <a data-toggle="tab" href="#information">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#settings">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#email">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#events">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="user-body">
+                    <div class="tab-content">
+                        <div id="information" class="tab-pane active">
+                            <h4>Account Information</h4>
+                        </div>
+                        <div id="settings" class="tab-pane">
+                            <h4>Settings</h4>
+                        </div>
+                        <div id="email" class="tab-pane">
+                            <h4>Send Message</h4>
+                        </div>
+                        <div id="events" class="tab-pane">
+                            <h4>Events</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-
-    <div class="form-group">
-        <div class="col-md-6 text-right">
-            <label>My district </label>
-        </div>
-        <div class="col-md-6">
-            <label>edit your country district</label>
-        </div>
-    </div>
-
-
-    <button type="submit" class="btn btn-warning btn-lg center-block"> Edit profile</button>
-</form>
-
-
+</div>
+</div>
+<!-- jQuery -->
+<script src="../../../resources/js/jquery-3.2.1.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../resources/js/bootstrap.min.js"></script>
 </body>
 </html>
