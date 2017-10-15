@@ -19,7 +19,17 @@
                       content="issue_content"></textarea>
         </div>
         <div class="text-center">
-            <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-refresh"></span></button>
+            <form>
+            <button type="submit" name="command" value="update" class="btn btn-info">
+                Update <span class="glyphicon glyphicon-refresh"></span></button>
+                <label for="status">
+                    <select id="status" class="form-control bg-warning" name="status" style="width: 150px">
+                        <option value="1" selected="selected">op</option>
+                        <option value="2">they kick me =(</option>
+                        <option value="3">I like to fuck up</option>
+                    </select>
+                </label>
+            </form>
         </div>
     </form>
 </div>
