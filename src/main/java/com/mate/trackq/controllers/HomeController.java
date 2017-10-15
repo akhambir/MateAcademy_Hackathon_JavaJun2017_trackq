@@ -13,4 +13,10 @@ public class HomeController {
         return new ModelAndView("index");
     }
 
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView index() {
+        return new ModelAndView("index");
+    }
+
+
 }
