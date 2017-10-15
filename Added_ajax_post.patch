@@ -1,0 +1,286 @@
+Index: src/main/test/com/mate/trackq/config/AppTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/test/com/mate/trackq/config/AppTest.java	(revision 65a76a6dead723831f502f5742e56dca1ab759b6)
++++ src/main/test/com/mate/trackq/config/AppTest.java	(revision 65a76a6dead723831f502f5742e56dca1ab759b6)
+@@ -0,0 +1,45 @@
++package com.mate.trackq.config;
++
++import com.mate.trackq.dao.UserDao;
++import com.mate.trackq.model.User;
++import org.junit.Test;
++import org.junit.runner.RunWith;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.test.context.ContextConfiguration;
++import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
++import org.springframework.test.context.web.WebAppConfiguration;
++
++import static org.junit.Assert.assertNotNull;
++
++@RunWith(SpringJUnit4ClassRunner.class)
++@WebAppConfiguration
++@ContextConfiguration(classes = AppConfig.class)
++public class AppTest {
++
++    @Autowired
++    UserDao userDao;
++
++    @Test
++    public void testValidation() {
++        User user = new User();
++        user.setEmail("yolo1@mail.ru");
++        user.setPassword("1231234");
++        user.setUsername("Johns");
++        //user.setId(55L);
++        assertNotNull(user);
++
++        userDao.create(user);
++    }
++
++//    @Test
++//    public void testValidation123() {
++//        User user = new User();
++//        user.setEmail("yolo@mail.ru");
++//        user.setPassword("123123");
++//        user.setUsername("John");
++//        //user.setId(55L);
++//        assertNotNull(user);
++//
++//        userDao.create(user);
++//    }
++}
+Index: src/main/webapp/resources/js/signup.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/webapp/resources/js/signup.js	(revision 65a76a6dead723831f502f5742e56dca1ab759b6)
++++ src/main/webapp/resources/js/signup.js	(revision 65a76a6dead723831f502f5742e56dca1ab759b6)
+@@ -0,0 +1,72 @@
++function validatePassword() {
++    const password1 = $('#password1');
++    const password2 = $('#password2');
++
++    if (password1.val() !== password2.val()) {
++        password1.addClass('alert-danger');
++        password2.addClass('alert-danger');
++    } else {
++        password1.removeClass('alert-danger');
++        password2.removeClass('alert-danger');
++    }
++}
++
++function validateEmail() {
++    const email = $('#email');
++    const emailRegex = new RegExp("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
++    if (!emailRegex.test(email.val())) {
++        email.addClass('alert-danger');
++    } else {
++        email.removeClass('alert-danger');
++    }
++}
++
++function validateText(e) {
++    const text = $(e.currentTarget);
++    const textRegex = new RegExp("^[a-zA-Zа-яА-Я0-9@.ЇїІіґҐ_]{5,32}$");
++    if (!textRegex.test(text.val())) {
++        text.addClass('alert-danger');
++    } else {
++        text.removeClass('alert-danger');
++    }
++}
++
++$('#email').focusout((e) => {
++    validateEmail();
++});
++
++$('#login').focusout((e) => {
++    validateText(e);
++});
++
++$('.passwordCheck').focusout((e) => {
++    const passwords = $('.passwordCheck');
++    if (passwords[0] !== '' && passwords[1] !== '') {
++        validatePassword();
++    }
++});
++
++$('#submitForm').click((e) => {
++    console.log(location.search);
++    const form = $('#signup');
++    const json = JSON.stringify({
++        username: $('#login').val(),
++        email: $('#email').val(),
++        password: $('#password1').val(),
++    });
++    $.ajax({
++        url: form.attr('action'),
++        type: 'POST',
++        data: json,
++        success: function (data, textStatus, jqXHR) {
++            console.log(data);
++        },
++        error: function (jqXHR, textStatus, errorThrown) {
++            console.log(jqXHR);
++            console.log(textStatus);
++            console.log(errorThrown);
++        }
++    });
++    e.preventDefault(); //STOP default action
++    // e.unbind(); //unbind. to stop multiple form submit.
++});
+\ No newline at end of file
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- pom.xml	(date 1508081362000)
++++ pom.xml	(date 1508081372000)
+@@ -15,6 +15,7 @@
+         <junit-version>4.12</junit-version>
+         <com.h2-version>1.4.196</com.h2-version>
+         <spring.security.version>4.2.3.RELEASE</spring.security.version>
++        <jackson.version>2.6.3</jackson.version>
+     </properties>
+ 
+     <dependencies>
+@@ -155,6 +156,17 @@
+             <artifactId>mail</artifactId>
+             <version>1.4.7</version>
+         </dependency>
++        <dependency>
++            <groupId>com.fasterxml.jackson.core</groupId>
++            <artifactId>jackson-core</artifactId>
++            <version>${jackson.version}</version>
++        </dependency>
++
++        <dependency>
++            <groupId>com.fasterxml.jackson.core</groupId>
++            <artifactId>jackson-databind</artifactId>
++            <version>${jackson.version}</version>
++        </dependency>
+ 
+     </dependencies>
+ 
+Index: src/main/java/com/mate/trackq/config/SecurityConfig.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/mate/trackq/config/SecurityConfig.java	(date 1508081362000)
++++ src/main/java/com/mate/trackq/config/SecurityConfig.java	(date 1508081372000)
+@@ -9,6 +9,7 @@
+ import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+ import org.springframework.security.crypto.password.PasswordEncoder;
++import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+ 
+ import javax.sql.DataSource;
+ 
+@@ -47,7 +48,7 @@
+                 .and()
+                 .exceptionHandling().accessDeniedPage("/403")
+                 .and()
+-                .csrf();
++                .csrf().disable();
+     }
+ 
+     @Bean
+Index: src/main/java/com/mate/trackq/controllers/UserController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/mate/trackq/controllers/UserController.java	(date 1508081362000)
++++ src/main/java/com/mate/trackq/controllers/UserController.java	(date 1508081372000)
+@@ -42,7 +42,7 @@
+     }
+ 
+     @RequestMapping(value = "/signup", method = RequestMethod.POST)
+-    public String signUp(HttpServletRequest request, @ModelAttribute User user) {
++    public String signUp(HttpServletRequest request, @RequestBody User user) {
+         User savedUser = userService.addNewUser(user);
+ 
+         userService.sendConfirmationEmail(savedUser, DomainUtils.getUrl(request));
+Index: src/main/java/com/mate/trackq/model/User.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/mate/trackq/model/User.java	(date 1508081362000)
++++ src/main/java/com/mate/trackq/model/User.java	(date 1508081372000)
+@@ -1,24 +1,32 @@
+ package com.mate.trackq.model;
+ 
++import com.fasterxml.jackson.annotation.JsonProperty;
++import com.fasterxml.jackson.databind.annotation.JsonSerialize;
++
+ import javax.persistence.*;
+ import java.util.List;
+ import java.util.Set;
+ 
+ @Entity
+ @Table(name = "users", schema = "trackq")
++@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+ public class User {
+ 
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
++    @JsonProperty
+     private Long id;
+ 
+     @Column(name = "username")
++    @JsonProperty
+     private String username;
+ 
+     @Column(name = "email")
++    @JsonProperty
+     private String email;
+ 
+     @Column(name = "password")
++    @JsonProperty
+     private String password;
+ 
+     @ManyToMany(fetch = FetchType.LAZY, targetEntity = Role.class, cascade = CascadeType.ALL)
+Index: src/main/webapp/WEB-INF/views/signup.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/webapp/WEB-INF/views/signup.jsp	(date 1508081362000)
++++ src/main/webapp/WEB-INF/views/signup.jsp	(date 1508081372000)
+@@ -27,26 +27,26 @@
+                 <form id="signup" method="post" action="/signup">
+                     <div style="margin-bottom: 25px" class="input-group">
+                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+-                        <input class="form-control" placeholder="Email" id="email" type="email"/>
++                        <input form="signup" class="form-control" placeholder="Email" id="email" type="email"/>
+                     </div>
+ 
+                     <div style="margin-bottom: 15px" class="input-group">
+                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+-                        <input class="form-control" placeholder="Username" id="login" type="text"/>
++                        <input form="signup" class="form-control" placeholder="Username" id="login" type="text"/>
+                     </div>
+ 
+                     <div style="margin-bottom: 15px" class="input-group">
+                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+-                        <input class="form-control passwordCheck" placeholder="Password" id="password1" type="password"/>
++                        <input form="signup" class="form-control passwordCheck" placeholder="Password" id="password1" type="password"/>
+                     </div>
+ 
+                     <div style="margin-bottom: 15px" class="input-group">
+                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+-                        <input class="form-control passwordCheck" placeholder="Confirm password" id="password2" type="password"/>
++                        <input form="signup" class="form-control passwordCheck" placeholder="Confirm password" id="password2" type="password"/>
+                     </div>
+ 
+                     <div class="col-sm-12 controls text-center">
+-                        <button id="submitForm" type="submit" class="btn btn-success btn-lg">Login</button>
++                        <button form="signup" id="submitForm" type="submit" class="btn btn-success btn-lg">Login</button>
+                     </div>
+                 </form>
+ 
