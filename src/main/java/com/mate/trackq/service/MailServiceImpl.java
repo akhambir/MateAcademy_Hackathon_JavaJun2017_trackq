@@ -46,23 +46,16 @@ public class MailServiceImpl implements MailService {
     }
 
     @Override
-    public void sendNewPasswordEmail(User user, String hostname) {
-        String confirmationLink = hostname + "/change-password/" + Hasher.getSha256(user.getUsername());
-        userService.resetPassword(user);
-        String emailReceiver = user.getEmail();
+    public void sendNewPasswordEmail(String email, String hostname) {
+        String confirmationLink = hostname + "/change-password/" + getHashAndEmail(email);
         String subject = "Set new password";
-        String messageText = user.getUsername()+ " please, set your new password, by link below " +
+        String messageText = "Please, set your new password, by link below " +
                 HtmlUtils.buildHrefTag(confirmationLink) + " Regards  TrackQ team!";
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(emailReceiver);
+        message.setTo(email);
         message.setSubject(subject);
         message.setText(messageText);
         mailSender.send(message);
-    }
-
-    @Override
-    public void sendChangePasswordEmail(String email) {
-        String secret = getHashAndEmail(email);
     }
 
     private String getHashAndEmail(String email) {

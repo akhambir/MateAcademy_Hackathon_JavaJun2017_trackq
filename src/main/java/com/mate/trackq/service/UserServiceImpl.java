@@ -36,11 +36,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void resetPassword(User user) {
-        userDao.resetPassword(user);
-    }
-
-    @Override
     public User addNewUser(User user) throws UsernameExistsException, EmailExistsException {
         if (usernameExists(user.getUsername())) {
             throw new UsernameExistsException("Username is already exist.");

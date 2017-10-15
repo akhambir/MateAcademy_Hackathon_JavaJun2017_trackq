@@ -1,7 +1,5 @@
 package com.mate.trackq.controllers;
 
-import com.mate.trackq.exception.EmailExistsException;
-import com.mate.trackq.exception.UsernameExistsException;
 import com.mate.trackq.model.Project;
 import com.mate.trackq.model.User;
 import com.mate.trackq.service.MailService;
@@ -69,28 +67,16 @@ public class UserController {
         return "redirect:/login";
     }
 
-    //TODO Check username on frontend
-    @ExceptionHandler(UsernameExistsException.class)
-    public ModelAndView usernameExistsHandler() {
-        return new ModelAndView("signup", "error", "Username already exists.");
-    }
-
-    //TODO Check email on frontend
-    @ExceptionHandler(EmailExistsException.class)
-    public ModelAndView emailExistsHandler() {
-        return new ModelAndView("signup", "error", "Email already exists.");
-    }
-
     @RequestMapping(method = GET, value = "/forgot-password")
     public String forgotPasswordPage() {
         return "forgotPassword";
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/forgot-password")
-    public ModelAndView forgotPassword(@RequestParam String email) {
+    public ModelAndView forgotPassword(@RequestParam String email, HttpServletRequest request) {
         User user = userService.findByEmail(email);
         if (user != null) {
-            mailService.sendChangePasswordEmail(user.getEmail());
+            mailService.sendNewPasswordEmail(user.getEmail(), DomainUtils.getUrl(request));
         }
         ModelAndView mv = new ModelAndView("forgotPassword");
         mv.addObject("message", "Change Password confirmation sent on your email.");

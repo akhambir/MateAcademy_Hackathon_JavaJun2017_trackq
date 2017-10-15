@@ -14,8 +14,6 @@ public interface UserService {
 
     boolean confirmEmail(String hashedEmail, Long id);
 
-    void resetPassword(User user);
-
     User findByEmail(String email);
 
     void sendConfirmationEmail(User user, String serverName);
