@@ -6,6 +6,7 @@ import com.mate.trackq.model.User;
 import com.mate.trackq.service.MailService;
 import com.mate.trackq.service.ProjectService;
 import com.mate.trackq.service.UserService;
+import com.mate.trackq.util.DomainUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +44,8 @@ public class UserController {
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String signUp(HttpServletRequest request, @ModelAttribute User user) {
         User savedUser = userService.addNewUser(user);
-        userService.sendConfirmationEmail(savedUser, request.getServerName());
+
+        userService.sendConfirmationEmail(savedUser, DomainUtils.getUrl(request));
         return "redirect:/login";
     }
 
