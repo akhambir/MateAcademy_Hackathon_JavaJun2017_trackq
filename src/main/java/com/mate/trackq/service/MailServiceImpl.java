@@ -51,8 +51,8 @@ public class MailServiceImpl implements MailService {
         userService.resetPassword(user);
         String emailReceiver = user.getEmail();
         String subject = "Set new password";
-        String messageText = user.getUsername()+ " please, set your new password, by link below " +
-                HtmlUtils.buildHrefTag(confirmationLink) + " Regards  TrackQ team!";
+        String messageText = user.getUsername()+ " please, set your new password, by link below \n" +
+                confirmationLink + "\n Regards  TrackQ team!";
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(emailReceiver);
         message.setSubject(subject);
