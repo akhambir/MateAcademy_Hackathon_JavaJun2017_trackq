@@ -33,7 +33,7 @@ public class MailServiceImpl implements MailService {
 
     @Override
     public void sendConfirmRegistrationEmail(User user, String hostname) {
-        String confirmationLink = "http://" + hostname + "/confirm-registration/" + Hasher.getSha256(user.getEmail()) + "?id=" + user.getId();
+        String confirmationLink = hostname + "/confirm-registration/" + Hasher.getSha256(user.getEmail()) + "?id=" + user.getId();
         String emailReceiver = user.getEmail();
         String subject = "E-Mail confirmation TrackQ";
         String messageText = "Hello, " + user.getUsername() + " please, confirm, your E-Mail, by link below\n" +
@@ -47,8 +47,7 @@ public class MailServiceImpl implements MailService {
 
     @Override
     public void sendNewPasswordEmail(User user, String hostname) {
-        //todo change link
-        String confirmationLink = hostname + "/confirm-registration/" + Hasher.getSha256(user.getEmail()) + "?id=" + user.getId();
+        String confirmationLink = hostname + "/change-password/" + Hasher.getSha256(user.getUsername());
         userService.resetPassword(user);
         String emailReceiver = user.getEmail();
         String subject = "Set new password";
