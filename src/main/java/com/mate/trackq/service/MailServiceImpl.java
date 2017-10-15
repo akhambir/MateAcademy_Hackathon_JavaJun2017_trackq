@@ -1,6 +1,5 @@
 package com.mate.trackq.service;
 
-import com.mate.trackq.dao.UserDao;
 import com.mate.trackq.model.User;
 import com.mate.trackq.util.Hasher;
 import com.mate.trackq.util.HtmlUtils;
