@@ -14,9 +14,6 @@ public class MailServiceImpl implements MailService {
     @Autowired
     private MailSender mailSender;
 
-    @Autowired
-    private UserService userService;
-
     @Override
     public void sendInviteInProject(String email, Integer projectId, String hostname) {
         String confirmationLink = hostname + "/" + projectId + "?userEmail=" + email;
@@ -33,7 +30,7 @@ public class MailServiceImpl implements MailService {
 
     @Override
     public void sendConfirmRegistrationEmail(User user, String hostname) {
-        String confirmationLink = "http://" + hostname + "/confirm-registration/" + Hasher.getSha256(user.getEmail()) + "?id=" + user.getId();
+        String confirmationLink = hostname + "/confirm-registration/" + Hasher.getSha256(user.getEmail()) + "?id=" + user.getId();
         String emailReceiver = user.getEmail();
         String subject = "E-Mail confirmation TrackQ";
         String messageText = "Hello, " + user.getUsername() + " please, confirm, your E-Mail, by link below\n" +
@@ -47,17 +44,18 @@ public class MailServiceImpl implements MailService {
 
     @Override
     public void sendNewPasswordEmail(User user, String hostname) {
-        //todo change link
-        String confirmationLink = hostname + "/confirm-registration/" + Hasher.getSha256(user.getEmail()) + "?id=" + user.getId();
-        userService.resetPassword(user);
-        String emailReceiver = user.getEmail();
+        String confirmationLink = hostname + "/change-password/" + getHashAndUsername(user.getUsername());
         String subject = "Set new password";
-        String messageText = user.getUsername()+ " please, set your new password, by link below " +
+        String messageText = "Please, set your new password, by link below " +
                 HtmlUtils.buildHrefTag(confirmationLink) + " Regards  TrackQ team!";
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(emailReceiver);
+        message.setTo(user.getEmail());
         message.setSubject(subject);
         message.setText(messageText);
         mailSender.send(message);
+    }
+
+    private String getHashAndUsername(String username) {
+        return String.format("%s&%s", Hasher.getSha256(username), username);
     }
 }

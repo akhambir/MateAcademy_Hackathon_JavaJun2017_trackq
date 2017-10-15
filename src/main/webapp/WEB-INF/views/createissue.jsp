@@ -18,17 +18,13 @@
 <div style="margin-top:150px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 panel-body panel panel-default">
     <h3 class="text-info text-center">Create Issue</h3>
 
-    <form id="createIssue" class="form-horizontal" method="post" action="/create-issue">
+    <spring:form modelAttribute="issue"  id="createIssue" class="form-horizontal" method="post" action="/create-issue">
 
         <label for="projectIssue">Select projects to add issue</label>
 
         <div style="margin-bottom: 20px" class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
-            <select id="projectIssue" name="projects" class="form-control">
-                <option value="1" selected="selected">one</option>
-                <option value="2">two</option>
-                <option value="3">three</option>
-            </select>
+            <spring:select path="project" items="${userProjects}"/>
         </div>
 
         <label for="issueType">Select issue type</label>
@@ -57,7 +53,7 @@
         <div class="col-sm-12 controls text-center">
             <button type="submit" class="btn btn-primary btn-md ">Invite</button>
         </div>
-    </form>
+    </spring:form>
 
 </div>
 

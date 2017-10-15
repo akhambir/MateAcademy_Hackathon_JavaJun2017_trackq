@@ -42,11 +42,6 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void resetPassword(User user) {
-
-    }
-
-    @Override
     public boolean confirmEmail(String hashedEmail, Long id) {
         UserConfirmation confirmation = sessionFactory.getCurrentSession().get(UserConfirmation.class, id);
         if(confirmation != null && hashedEmail.equals(confirmation.getConfirmationID())) {
@@ -63,5 +58,10 @@ public class UserDaoImpl implements UserDao {
                 .createQuery("from User where email=:email")
                 .setParameter("email", email)
                 .uniqueResult();
+    }
+
+    @Override
+    public void update(User user) {
+        sessionFactory.getCurrentSession().update(user);
     }
 }

@@ -20,7 +20,7 @@
             <div class="panel-heading">
                 <div class="panel-title">Sign In</div>
                 <div style="float:right; font-size: 80%; position: relative; top:-20px">
-                    <a href="/forgot" style="color: white;font-size: 9pt">Forgot password?</a></div>
+                    <a href="/forgot-password" style="color: white;font-size: 9pt">Forgot password?</a></div>
             </div>
 
             <div style="padding-top:30px" class="panel-body">

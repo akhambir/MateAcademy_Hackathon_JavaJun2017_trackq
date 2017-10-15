@@ -6,11 +6,11 @@ import com.mate.trackq.exception.EmailExistsException;
 import com.mate.trackq.exception.UsernameExistsException;
 import com.mate.trackq.model.Role;
 import com.mate.trackq.model.User;
+import com.mate.trackq.util.Hasher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 
@@ -32,11 +32,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean confirmEmail(String hashedEmail, Long id) {
         return userDao.confirmEmail(hashedEmail, id);
-    }
-
-    @Override
-    public void resetPassword(User user) {
-        userDao.resetPassword(user);
     }
 
     @Override
@@ -81,5 +76,31 @@ public class UserServiceImpl implements UserService {
 
     private void encodePassword(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return userDao.findByUsername(username);
+    }
+
+    @Override
+    public User retrieveUserFromSecret(String hashAndUsername) {
+        String emailInput = hashAndUsername.split("&")[1];
+        User user = findByUsername(emailInput);
+        if (getHashAndUsername(user.getUsername()).equals(hashAndUsername)) {
+            return user;
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public void changePassword(User user, String newPassword) {
+        encodePassword(user);
+        userDao.update(user);
+    }
+
+    private String getHashAndUsername(String username) {
+        return String.format("%s&%s", Hasher.getSha256(username), username);
     }
 }

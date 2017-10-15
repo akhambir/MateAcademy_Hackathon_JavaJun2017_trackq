@@ -22,27 +22,21 @@
                 <div class="panel-title">Enter new password</div>
             </div>
             <div class="panel-body">
-                <springForm:form id="signupform" class="form-horizontal" method="post" action="/change-password/${secret}">
+                <springForm:form id="signupform" class="form-horizontal" method="post" action="/forgot-password/${secret}">
+
 
                     <div class="form-group">
-                        <label for="password1" class="col-md-3 control-label">Password</label>
+                        <label for="email" class="col-md-3 control-label">Email</label>
                         <div class="col-md-9">
-                            <input type="password" required id="password1" name="password" placeholder="Password" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password2" class="col-md-3 control-label">Password</label>
-                        <div class="col-md-9">
-                            <input type="password"  required id="password2" name="password2" placeholder="repeat it" class="form-control">
+                            <input type="email" required id="email" name="email" placeholder="Email" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <!-- Button -->
                         <div class="col-md-offset-3 col-md-9">
-                            <button type="submit" class="btn btn-primary btn-lg">
-                                Sign Up
+                            <button type="submit" class="btn btn-primary btn-md">
+                                <i class="glyphicon glyphicon-search"></i> Recover
                             </button>
                         </div>
                     </div>
