@@ -16,11 +16,14 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
 
+                    <security:authorize access="isAnonymous()">
                     <li <c:if test="${basic eq login}">class="active"</c:if>>
                         <a href="/login"><span class="glyphicon glyphicon-log-in"></span>Signin</a></li>
 
                     <li <c:if test="${basic eq signup}">class="active"</c:if>>
                     <a href="/signup"> <span class="glyphicon glyphicon-ok"></span>Signup</a></li>
+                    </security:authorize>
+
                     <security:authorize access="isAuthenticated()">
                     <li <c:if test="${basic eq logout}">class="active"</c:if>>
                         <a href="/logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
