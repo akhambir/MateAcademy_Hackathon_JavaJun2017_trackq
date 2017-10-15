@@ -2,16 +2,17 @@ package com.mate.trackq.controllers;
 
 import com.mate.trackq.model.Issue;
 import com.mate.trackq.model.Project;
+import com.mate.trackq.model.User;
 import com.mate.trackq.service.IssueService;
 import com.mate.trackq.service.MailService;
 import com.mate.trackq.service.ProjectService;
+import com.mate.trackq.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class ProjectController {
@@ -22,6 +23,8 @@ public class ProjectController {
     private IssueService issueService;
     @Autowired
     private MailService mailService;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/create-project", method = RequestMethod.GET)
     public ModelAndView createProjectGet() {
@@ -32,7 +35,7 @@ public class ProjectController {
     public ModelAndView createProjectPost(@ModelAttribute Project project) {
         ModelAndView mv = new ModelAndView();
         projectService.create(project);
-        mv.setViewName("index");
+        mv.setViewName("redirect:/index");
         return mv;
     }
 
@@ -50,9 +53,10 @@ public class ProjectController {
 
     @RequestMapping(value = "/invite-coworker", method = RequestMethod.POST)
     public ModelAndView inviteCoworker(@RequestParam("projectId") Integer projectId,
-                                       @RequestParam("userEmail") String userEmail) {
+                                       @RequestParam("userEmail") String userEmail,
+                                       HttpServletRequest httpServletRequest) {
         ModelAndView mv = new ModelAndView();
-        mailService.sendInviteInProject(userEmail, projectId);
+        mailService.sendInviteInProject(userEmail, projectId, httpServletRequest.getServerName());
         mv.setViewName("index");
         return mv;
     }
@@ -64,4 +68,17 @@ public class ProjectController {
         return mv;
     }
 
+    @RequestMapping(value = "/{projectName}", method = RequestMethod.GET)
+    public ModelAndView viewProject(@PathVariable("projectName") String projectName,
+                                    @RequestParam("userEmail") String userEmail) {
+        ModelAndView mv = new ModelAndView();
+        User user = userService.findByEmail(userEmail);
+        Project project = projectService.getByName(projectName);
+        if (user == null) {
+            mv.setViewName("redirect:/signup?projectId=" + project.getId());
+        } else {
+            mv.setViewName("project");
+        }
+        return mv;
+    }
 }

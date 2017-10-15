@@ -19,10 +19,15 @@ public class ProjectDaoImpl implements ProjectDao {
     }
 
     @Override
-    public Project getById(Integer projectId) {
+    public Project getById(Long projectId) {
+        return sessionFactory.getCurrentSession().get(Project.class, projectId);
+    }
+
+    @Override
+    public Project getByName(String projectName) {
         return (Project) sessionFactory.getCurrentSession()
-                .createQuery("from Project where id=:projectId")
-                .setParameter("projectId", projectId)
+                .createQuery("from Project where name=:projectName")
+                .setParameter("projectName", projectName)
                 .uniqueResult();
     }
 
