@@ -1,6 +1,7 @@
 package com.mate.trackq.controllers;
 
 import com.mate.trackq.model.Project;
+import com.mate.trackq.model.Role;
 import com.mate.trackq.model.User;
 import com.mate.trackq.service.MailService;
 import com.mate.trackq.service.ProjectService;
@@ -36,13 +37,12 @@ public class UserController {
         if (logout != null) {
             model.addObject("message", "Logged out successfully.");
         }
-
         model.setViewName("login");
         return model;
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
-    public ModelAndView registration(@RequestParam(value = "projectId", required = false) String projectId) {
+    public ModelAndView registration(@RequestParam(value = "projectId", required = false) Integer projectId) {
         ModelAndView mv = new ModelAndView("signup", "user", new User());
         if (projectId != null) {
             mv.addObject("projectId", projectId);
@@ -51,24 +51,15 @@ public class UserController {
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public ModelAndView registration(HttpServletRequest request, @ModelAttribute User user, @RequestParam(value = "projectId", required = false) String projectId) {
+    public ModelAndView registration(HttpServletRequest request, @ModelAttribute User user,
+                                     @RequestParam(value = "projectId", required = false) Integer projectId) {
         ModelAndView mv = new ModelAndView();
         if (projectId != null) {
-            Project project = projectService.getById(Integer.parseInt(projectId));
+            Project project = projectService.getById(projectId);
             user.addProject(project);
         }
         userService.create(user);
         mailService.sendConfirmRegistrationEmail(user, request.getServerName());
         return mv;
-    }
-
-    @RequestMapping(method = RequestMethod.GET, value = "/init")
-    public String test() {
-        User user = new User();
-        user.setUsername("user");
-        user.setEmail("test@test.com");
-        user.setPassword("test");
-        userService.create(user);
-        return "";
     }
 }
