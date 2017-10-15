@@ -53,6 +53,8 @@
                     <div class="col-sm-12 controls text-center">
                         <button type="submit" class="btn btn-success btn-lg ">Login</button>
                     </div>
+
+                    <input type="hidden" name="projectId" value="${projectId}"></p>
                 </spring:form>
 
             </div>
