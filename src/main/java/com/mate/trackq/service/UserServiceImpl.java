@@ -1,12 +1,18 @@
 package com.mate.trackq.service;
 
+import com.mate.trackq.dao.RoleDao;
 import com.mate.trackq.dao.UserDao;
 import com.mate.trackq.exception.EmailExistsException;
 import com.mate.trackq.exception.UsernameExistsException;
+import com.mate.trackq.model.Role;
 import com.mate.trackq.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -16,6 +22,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private RoleDao roleDao;
 
     @Override
     public boolean confirmEmail(String hashedEmail, Long id) {
@@ -35,7 +44,8 @@ public class UserServiceImpl implements UserService {
         if (emailExists(user.getEmail())) {
             throw new EmailExistsException();
         }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        setDefaultRole(user);
+        encodePassword(user);
         return userDao.create(user);
     }
 
@@ -52,5 +62,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByEmail(String email) {
         return userDao.findByEmail(email);
+    }
+
+    private void setDefaultRole(User user) {
+        Role userRole = roleDao.getByRoleName("ROLE_USER");
+        if (userRole != null) {
+            user.setRoles(new HashSet<>(Collections.singletonList(userRole)));
+        }
+    }
+
+    private void encodePassword(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
     }
 }
