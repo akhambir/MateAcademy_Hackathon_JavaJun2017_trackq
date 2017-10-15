@@ -38,11 +38,11 @@ public class MailServiceImpl implements MailService {
 
     @Override
     public void sendConfirmRegistrationEmail(User user, String hostname) {
-        String confirmationLink = hostname + "/confirm-registration/" + Hasher.getSha256(user.getEmail()) + "?id=" + user.getId();
+        String confirmationLink = "http://" + hostname + "/confirm-registration/" + Hasher.getSha256(user.getEmail()) + "?id=" + user.getId();
         String emailReceiver = user.getEmail();
         String subject = "E-Mail confirmation TrackQ";
-        String messageText = "Hello, " + user.getUsername() + " please, confirm, your E-Mail, by link below" +
-                HtmlUtils.buildHrefTag(confirmationLink) + " Regards  TrackQ team!";
+        String messageText = "Hello, " + user.getUsername() + " please, confirm, your E-Mail, by link below\n" +
+                confirmationLink + "\n Regards  TrackQ team!";
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(emailReceiver);
         message.setSubject(subject);
