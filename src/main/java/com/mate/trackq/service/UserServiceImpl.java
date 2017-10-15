@@ -90,14 +90,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void sendChangePasswordURL(User user) {
-        //TODO Send change password URL. Example: '/change-password/qweroij123skw'
-        String secret = Hasher.getSha256(user.getUsername());
+    public User retrieveUserFromSecret(String hashAndEmail) {
+        String emailInput = hashAndEmail.split("&")[1];
+        User user = findByEmail(emailInput);
+        if (getHashAndEmail(user.getEmail()).equals(hashAndEmail)) {
+            return user;
+        } else {
+            return null;
+        }
     }
 
     @Override
-    public boolean checkChangePasswordSecret(User user, String secret) {
-        String userSecret = Hasher.getSha256(user.getUsername());
-        return userSecret.equals(secret);
+    public void changePassword(User user, String newPassword) {
+        encodePassword(user);
+        userDao.update(user);
+    }
+
+    private String getHashAndEmail(String email) {
+        return String.format("%s&%s", Hasher.getSha256(email), email);
     }
 }

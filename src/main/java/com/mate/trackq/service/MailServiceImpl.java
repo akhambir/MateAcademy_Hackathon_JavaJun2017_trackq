@@ -60,4 +60,13 @@ public class MailServiceImpl implements MailService {
         message.setText(messageText);
         mailSender.send(message);
     }
+
+    @Override
+    public void sendChangePasswordEmail(String email) {
+        String secret = getHashAndEmail(email);
+    }
+
+    private String getHashAndEmail(String email) {
+        return String.format("%s&%s", Hasher.getSha256(email), email);
+    }
 }

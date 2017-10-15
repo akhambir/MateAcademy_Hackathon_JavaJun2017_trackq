@@ -22,7 +22,7 @@ public interface UserService {
 
     User findByUsername(String username);
 
-    void sendChangePasswordURL(User user);
+    User retrieveUserFromSecret(String uri);
 
-    boolean checkChangePasswordSecret(User user, String uri);
+    void changePassword(User user, String newPassword);
 }

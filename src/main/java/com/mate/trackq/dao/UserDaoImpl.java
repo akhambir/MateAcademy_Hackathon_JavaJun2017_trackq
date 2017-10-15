@@ -64,4 +64,9 @@ public class UserDaoImpl implements UserDao {
                 .setParameter("email", email)
                 .uniqueResult();
     }
+
+    @Override
+    public void update(User user) {
+        sessionFactory.getCurrentSession().update(user);
+    }
 }

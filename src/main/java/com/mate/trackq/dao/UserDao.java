@@ -17,4 +17,6 @@ public interface UserDao {
     User findByEmail(String email);
 
     boolean confirmEmail(String hashedEmail, Long id);
+
+    void update(User user);
 }
