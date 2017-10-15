@@ -42,7 +42,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public String signUp(HttpServletRequest request, @ModelAttribute User user) {
+    public String signUp(HttpServletRequest request, @RequestBody User user) {
         User savedUser = userService.addNewUser(user);
 
         userService.sendConfirmationEmail(savedUser, DomainUtils.getUrl(request));
