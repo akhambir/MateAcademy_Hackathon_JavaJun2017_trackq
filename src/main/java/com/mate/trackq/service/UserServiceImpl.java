@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 
@@ -85,10 +84,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User retrieveUserFromSecret(String hashAndEmail) {
-        String emailInput = hashAndEmail.split("&")[1];
-        User user = findByEmail(emailInput);
-        if (getHashAndEmail(user.getEmail()).equals(hashAndEmail)) {
+    public User retrieveUserFromSecret(String hashAndUsername) {
+        String emailInput = hashAndUsername.split("&")[1];
+        User user = findByUsername(emailInput);
+        if (getHashAndUsername(user.getUsername()).equals(hashAndUsername)) {
             return user;
         } else {
             return null;
@@ -101,7 +100,7 @@ public class UserServiceImpl implements UserService {
         userDao.update(user);
     }
 
-    private String getHashAndEmail(String email) {
-        return String.format("%s&%s", Hasher.getSha256(email), email);
+    private String getHashAndUsername(String username) {
+        return String.format("%s&%s", Hasher.getSha256(username), username);
     }
 }

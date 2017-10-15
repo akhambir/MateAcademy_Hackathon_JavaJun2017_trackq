@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="springForm" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -21,7 +22,7 @@
                 <div class="panel-title">Enter new password</div>
             </div>
             <div class="panel-body">
-                <form id="signupform" class="form-horizontal" method="post" action="/sendToMail">
+                <springForm:form id="signupform" class="form-horizontal" method="post" action="/forgot-password/${secret}">
 
 
                     <div class="form-group">
@@ -39,7 +40,7 @@
                             </button>
                         </div>
                     </div>
-                </form>
+                </springForm:form>
             </div>
         </div>
 

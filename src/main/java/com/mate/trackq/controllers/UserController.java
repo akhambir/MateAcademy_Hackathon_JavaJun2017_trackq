@@ -29,7 +29,7 @@ public class UserController {
     @Autowired
     private MailService mailService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = GET)
     public ModelAndView loginPage(@RequestParam(value = "error", required = false) String error,
                                   @RequestParam(value = "logout", required = false) String logout) {
         ModelAndView model = new ModelAndView();
@@ -45,7 +45,7 @@ public class UserController {
         return model;
     }
 
-    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    @RequestMapping(value = "/signup", method = GET)
     public ModelAndView signUpPage(@RequestParam(value = "projectId", required = false, defaultValue = "null")
                                            String projectId) {
         ModelAndView mv = new ModelAndView("signup", "user", new User());
@@ -69,38 +69,39 @@ public class UserController {
 
     @RequestMapping(method = GET, value = "/forgot-password")
     public String forgotPasswordPage() {
-        return "forgotPassword";
+        return "remindPassword";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/forgot-password")
+    @RequestMapping(method = POST, value = "/forgot-password")
     public ModelAndView forgotPassword(@RequestParam String email, HttpServletRequest request) {
         User user = userService.findByEmail(email);
         if (user != null) {
-            mailService.sendNewPasswordEmail(user.getEmail(), DomainUtils.getUrl(request));
+            mailService.sendNewPasswordEmail(user, DomainUtils.getUrl(request));
         }
-        ModelAndView mv = new ModelAndView("forgotPassword");
+        ModelAndView mv = new ModelAndView("remindPassword");
         mv.addObject("message", "Change Password confirmation sent on your email.");
         return mv;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/change-password/{secret}")
+    @RequestMapping(method = GET, value = "/change-password/{secret}")
     public ModelAndView changePasswordPage(@PathVariable String secret, HttpServletResponse response)
             throws IOException {
         User user = userService.retrieveUserFromSecret(secret);
         if (user != null) {
-            return new ModelAndView("setNewPassword", "user", user);
+            return new ModelAndView("setNewPassword", "secret", secret);
         } else {
             response.sendError(404);
             return null;
         }
     }
 
+    //TODO Need test
     @RequestMapping(method = POST, value = "/change-password/{secret}")
-    public ModelAndView changePassword(@PathVariable String secret, @RequestParam String newPassword,
+    public ModelAndView changePassword(@PathVariable String secret, @RequestParam String password,
                                        HttpServletResponse response) throws IOException {
         User user = userService.retrieveUserFromSecret(secret);
         if (user != null) {
-            userService.changePassword(user, newPassword);
+            userService.changePassword(user, password);
             return new ModelAndView("login", "message", "Your password has been change.");
         } else {
             response.sendError(404);
