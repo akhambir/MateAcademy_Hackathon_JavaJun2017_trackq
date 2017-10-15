@@ -46,6 +46,7 @@
 
         <div style="margin-bottom: 15px" class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <%--<spring:select path=""--%>
             <select id="assignee" name="assignee" class="form-control">
                 <option value="1" selected="selected">John</option>
                 <option value="2">Jack</option>
