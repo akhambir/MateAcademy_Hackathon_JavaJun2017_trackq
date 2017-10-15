@@ -39,7 +39,7 @@
         </div>
 
         <div class="col-sm-12 controls text-center">
-            <button type="submit" id="btn-invite" class="btn btn-primary btn-md ">Invite</button>
+            <button type="submit" class="btn btn-primary btn-md ">Invite</button>
         </div>
     </form>
 </div>
