@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ attribute name="basic" required="true"%>
 
 <div class="container">
@@ -20,15 +21,15 @@
 
                     <li <c:if test="${basic eq signup}">class="active"</c:if>>
                     <a href="/signup"> <span class="glyphicon glyphicon-ok"></span>Signup</a></li>
-
+                    <security:authorize access="isAuthenticated()">
                     <li <c:if test="${basic eq logout}">class="active"</c:if>>
                         <a href="/logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
-
                     <li <c:if test="${basic eq profile}">class="active"</c:if>>
                         <a href="/profile"><span class="glyphicon glyphicon-user"></span>My profile</a></li>
 
                     <li <c:if test="${basic eq projects}">class="active"</c:if>>
                         <a href="/projects"><span class="glyphicon glyphicon-list-alt"></span>My projects</a></li>
+                    </security:authorize>
                 </ul>
             </div>
         </div>

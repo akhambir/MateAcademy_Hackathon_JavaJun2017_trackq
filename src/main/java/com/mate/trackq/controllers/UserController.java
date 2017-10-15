@@ -2,8 +2,6 @@ package com.mate.trackq.controllers;
 
 import com.mate.trackq.exception.EmailExistsException;
 import com.mate.trackq.exception.UsernameExistsException;
-import com.mate.trackq.model.Project;
-import com.mate.trackq.model.Role;
 import com.mate.trackq.model.User;
 import com.mate.trackq.service.MailService;
 import com.mate.trackq.service.ProjectService;
@@ -19,11 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 public class UserController {
 
     @Autowired
-    private MailService mailService;
-    @Autowired
     private UserService userService;
-    @Autowired
-    private ProjectService projectService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView loginPage(@RequestParam(value = "error", required = false) String error,
@@ -47,12 +41,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public ModelAndView signUp(HttpServletRequest request, @ModelAttribute User user) {
-        ModelAndView mv = new ModelAndView("signup");
-        User savedUser = userService.create(user);
-        mailService.sendConfirmRegistrationEmail(savedUser, request.getServerName());
-        mv.addObject("message", "Confirmation email sent.");
-        return mv;
+    public String signUp(HttpServletRequest request, @ModelAttribute User user) {
+        User savedUser = userService.addNewUser(user);
+        userService.sendConfirmationEmail(savedUser, request.getServerName());
+        return "redirect:/login";
     }
 
     //TODO Check username on frontend

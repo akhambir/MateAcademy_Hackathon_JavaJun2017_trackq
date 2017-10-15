@@ -26,6 +26,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RoleDao roleDao;
 
+    @Autowired
+    private MailService mailService;
+
     @Override
     public boolean confirmEmail(String hashedEmail, Long id) {
         return userDao.confirmEmail(hashedEmail, id);
@@ -37,7 +40,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User create(User user) throws UsernameExistsException, EmailExistsException {
+    public User addNewUser(User user) throws UsernameExistsException, EmailExistsException {
         if (usernameExists(user.getUsername())) {
             throw new UsernameExistsException();
         }
@@ -69,6 +72,11 @@ public class UserServiceImpl implements UserService {
         if (userRole != null) {
             user.setRoles(new HashSet<>(Collections.singletonList(userRole)));
         }
+    }
+
+    @Override
+    public void sendConfirmationEmail(User user, String serverName) {
+        mailService.sendConfirmRegistrationEmail(user, serverName);
     }
 
     private void encodePassword(User user) {
