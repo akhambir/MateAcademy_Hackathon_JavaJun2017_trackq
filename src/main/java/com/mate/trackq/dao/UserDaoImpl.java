@@ -2,6 +2,7 @@ package com.mate.trackq.dao;
 
 import com.mate.trackq.model.User;
 import com.mate.trackq.model.UserConfirmation;
+import com.mate.trackq.util.DateUtils;
 import com.mate.trackq.util.Hasher;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class UserDaoImpl implements UserDao {
     public User create(User user) {
         UserConfirmation confirmation = new UserConfirmation();
         confirmation.setConfirmationID(Hasher.getSha256(user.getEmail()));
-        confirmation.setTimestamp(new Timestamp(System.currentTimeMillis()));
+        confirmation.setTimestamp(DateUtils.addDay(new Timestamp(System.currentTimeMillis())));
         confirmation.setUser(user);
         sessionFactory.getCurrentSession().save(user);
         return user;

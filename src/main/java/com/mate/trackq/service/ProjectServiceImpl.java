@@ -21,4 +21,9 @@ public class ProjectServiceImpl implements ProjectService {
     public Project getById(Long projectId) {
         return projectDao.getById(projectId);
     }
+
+    @Override
+    public Project getByName(String projectName) {
+        return projectDao.getByName(projectName);
+    }
 }

@@ -11,4 +11,6 @@ public interface ProjectService {
     void create(Project project);
 
     Project getById(Long projectId);
+
+    Project getByName(String projectName);
 }

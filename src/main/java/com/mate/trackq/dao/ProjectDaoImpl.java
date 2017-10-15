@@ -23,4 +23,12 @@ public class ProjectDaoImpl implements ProjectDao {
         return sessionFactory.getCurrentSession().get(Project.class, projectId);
     }
 
+    @Override
+    public Project getByName(String projectName) {
+        return (Project) sessionFactory.getCurrentSession()
+                .createQuery("from Project where name=:projectName")
+                .setParameter("projectName", projectName)
+                .uniqueResult();
+    }
+
 }

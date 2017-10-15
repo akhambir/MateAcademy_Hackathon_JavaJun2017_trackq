@@ -22,7 +22,16 @@ public class MailServiceImpl implements MailService {
     }
 
     @Override
-    public void sendInviteInProject(String email, Integer projectId) {
+    public void sendInviteInProject(String email, Integer projectId, String hostname) {
+        String confirmationLink = hostname + "/" + projectId + "?userEmail=" + email;
+        String subject = "E-Mail confirmation TrackQ";
+        String messageText = "Hello, you're invited to the project. Please, confirm, your E-Mail, by link below" +
+                confirmationLink + " Regards  TrackQ team!";
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(email);
+        message.setSubject(subject);
+        message.setText(messageText);
+        mailSender.send(message);
 
     }
 
