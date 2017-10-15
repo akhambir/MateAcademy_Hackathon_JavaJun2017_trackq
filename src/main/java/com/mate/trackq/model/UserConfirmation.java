@@ -1,5 +1,9 @@
 package com.mate.trackq.model;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -7,9 +11,12 @@ import java.sql.Timestamp;
 @Table(name = "user_email_confirmation", schema = "trackq")
 public class UserConfirmation {
 
+    @GenericGenerator(name = "generator", strategy = "foreign",
+    parameters = @Parameter(name = "property", value = "user"))
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "generator")
+    @Column(name = "USER_ID")
+    private Long user_id;
 
     @Column(name = "EXPIRATION_TIMESTAMP")
     private Timestamp timestamp;
@@ -23,12 +30,12 @@ public class UserConfirmation {
 
     public UserConfirmation() {}
 
-    public Long getId() {
-        return id;
+    public Long getUser_id() {
+        return user_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
     }
 
     public Timestamp getTimestamp() {
