@@ -37,11 +37,11 @@ public class Project {
 
     public String getpName() {
         return pName;
-    }
+    }//todo java conventions
 
     public void setpName(String pName) {
         this.pName = pName;
-    }
+    }//todo java conventions
 
     public String getDescription() {
         return description;

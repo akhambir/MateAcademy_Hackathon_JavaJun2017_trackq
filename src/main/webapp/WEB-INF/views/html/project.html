@@ -1,10 +1,194 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-    <!--<meta charset="UTF-8">-->
-    <!--<title>Title</title>-->
-<!--</head>-->
-<!--<body>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <title>projects</title>
+    <meta charset="utf-8">
+    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../resources/css/bootstrap-theme.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </button>
+                <a class="navbar-brand" href="/root/home">TrackQ.com</a>
+            </div>
 
-<!--</body>-->
-<!--</html>-->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span>Signin</a></li>
+
+                    <li><a href="/signup"> <span class="glyphicon glyphicon-ok"></span>Signup</a></li>
+
+                    <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+
+                    <li><a href="/profile"><span class="glyphicon glyphicon-user"></span>My profile</a></li>
+
+                    <li><a href="/projects"><span class="glyphicon glyphicon-list-alt"></span>My projects</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<div style="margin-top:100px;">
+<div class="row container-fluid">
+
+    <div class="col-lg-3 col-sm-6 text-center panel-body panel"><h3 class="text-warning">New</h3>
+        <div class="panel-body panel panel-info">
+            <h4 class="text-info text-center"><span class="badge" STYLE="background: red">Status</span> Task Name <span
+                    class="badge">Assignee</span></h4>
+            <br>
+            <form action="\updateIssue" method="post">
+                <input type="number" hidden value="issueId" name="issueId">
+                <div style="margin-bottom: 15px">
+            <textarea name="issueDescription" rows="4" class="form-control text-center"
+                      content="issue_content"></textarea>
+                </div>
+                <div class="text-center">
+                    <form>
+                        <div class="form-inline">
+                            <select class="form-control bg-warning" name="status" style="width: 150px">
+                                <option value="1" selected="selected">New</option>
+                                <option value="2">To check</option>
+                                <option value="3">In Development</option>
+                                <option value="4">Done</option>
+                            </select>
+                            <button type="submit" name="command" value="update" class="btn btn-info">
+                                <span class="glyphicon glyphicon-refresh"></span></button>
+                        </div>
+                    </form>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-sm-6 text-center panel-body panel"><h3 class="text-primary">To check</h3>
+    </div>
+
+    <div class="col-lg-3 col-sm-6 text-center panel-body panel"><h3 class="text-info">In Development</h3>
+        <div class="panel-body panel panel-info">
+            <h4 class="text-info text-center"><span class="badge" STYLE="background: red">Status</span> Task Name <span
+                    class="badge">Assignee</span></h4>
+            <br>
+            <form action="\updateIssue" method="post">
+                <input type="number" hidden value="issueId" name="issueId">
+                <div style="margin-bottom: 15px">
+            <textarea name="issueDescription" rows="4" class="form-control text-center"
+                      content="issue_content"></textarea>
+                </div>
+                <div class="text-center">
+                    <form>
+                        <div class="form-inline">
+                            <select class="form-control bg-warning" name="status" style="width: 150px">
+                                <option value="1" selected="selected">New</option>
+                                <option value="2">To check</option>
+                                <option value="3">In Development</option>
+                                <option value="4">Done</option>
+                            </select>
+                            <button type="submit" name="command" value="update" class="btn btn-info">
+                                <span class="glyphicon glyphicon-refresh"></span></button>
+                        </div>
+                    </form>
+                </div>
+            </form>
+        </div>
+        <div class="panel-body panel panel-info">
+            <h4 class="text-info text-center"><span class="badge" STYLE="background: red">Status</span> Task Name <span
+                    class="badge">Assignee</span></h4>
+            <br>
+            <form action="\updateIssue" method="post">
+                <input type="number" hidden value="issueId" name="issueId">
+                <div style="margin-bottom: 15px">
+            <textarea name="issueDescription" rows="4" class="form-control text-center"
+                      content="issue_content"></textarea>
+                </div>
+                <div class="text-center">
+                    <form>
+                        <div class="form-inline">
+                            <select class="form-control bg-warning" name="status" style="width: 150px">
+                                <option value="1" selected="selected">New</option>
+                                <option value="2">To check</option>
+                                <option value="3">In Development</option>
+                                <option value="4">Done</option>
+                            </select>
+                            <button type="submit" name="command" value="update" class="btn btn-info">
+                                <span class="glyphicon glyphicon-refresh"></span></button>
+                        </div>
+                    </form>
+                </div>
+            </form>
+        </div>
+        <div class="panel-body panel panel-info">
+            <h4 class="text-info text-center"><span class="badge" STYLE="background: red">Status</span> Task Name <span
+                    class="badge">Assignee</span></h4>
+            <br>
+            <form action="\updateIssue" method="post">
+                <input type="number" hidden value="issueId" name="issueId">
+                <div style="margin-bottom: 15px">
+            <textarea name="issueDescription" rows="4" class="form-control text-center"
+                      content="issue_content"></textarea>
+                </div>
+                <div class="text-center">
+                    <form>
+                        <div class="form-inline">
+                            <select class="form-control bg-warning" name="status" style="width: 150px">
+                                <option value="1" selected="selected">New</option>
+                                <option value="2">To check</option>
+                                <option value="3">In Development</option>
+                                <option value="4">Done</option>
+                            </select>
+                            <button type="submit" name="command" value="update" class="btn btn-info">
+                                <span class="glyphicon glyphicon-refresh"></span></button>
+                        </div>
+                    </form>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-sm-6 text-center panel-body panel"><h3 class="text-success">Done</h3>
+        <div class="panel-body panel panel-info">
+            <h4 class="text-info text-center"><span class="badge" STYLE="background: red">Status</span> Task Name <span
+                    class="badge">Assignee</span></h4>
+            <br>
+            <form action="\updateIssue" method="post">
+                <input type="number" hidden value="issueId" name="issueId">
+                <div style="margin-bottom: 15px">
+            <textarea name="issueDescription" rows="4" class="form-control text-center"
+                      content="issue_content"></textarea>
+                </div>
+                <div class="text-center">
+                    <form>
+                        <div class="form-inline">
+                            <select class="form-control bg-warning" name="status" style="width: 150px">
+                                <option value="1" selected="selected">New</option>
+                                <option value="2">To check</option>
+                                <option value="3">In Development</option>
+                                <option value="4">Done</option>
+                            </select>
+                            <button type="submit" name="command" value="update" class="btn btn-info">
+                                <span class="glyphicon glyphicon-refresh"></span></button>
+                        </div>
+                    </form>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    </div>
+</div>
+
+
+<!-- jQuery -->
+<script src="../../../resources/js/jquery-3.2.1.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../resources/js/bootstrap.min.js"></script>
+</body>
