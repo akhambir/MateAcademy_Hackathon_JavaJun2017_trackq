@@ -7,6 +7,8 @@ import com.mate.trackq.service.ProjectService;
 import com.mate.trackq.service.UserService;
 import com.mate.trackq.util.DomainUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -64,15 +66,15 @@ public class UserController {
     }
 
     @RequestMapping(value = "/signup", method = POST, headers = "Accept=application/json")
-    public String signUp(HttpServletRequest request, @RequestBody User user,
-                         @RequestParam(required = false) String projectId) {
+    public ResponseEntity<String> signUp(HttpServletRequest request, @RequestBody User user,
+                                 @RequestParam(required = false) String projectId) {
         if (projectId != null) {
             Project project = projectService.getById(Long.parseLong(projectId));
             user.addProject(project);
         }
         User savedUser = userService.addNewUser(user);
         userService.sendConfirmationEmail(savedUser, DomainUtils.getUrl(request));
-        return "redirect:/login";
+        return new ResponseEntity<>("{\"redirectPage\" : \"/login\"}", HttpStatus.OK);
     }
 
     @RequestMapping(method = GET, value = "/forgot-password")

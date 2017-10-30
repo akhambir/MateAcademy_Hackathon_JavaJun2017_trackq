@@ -64,6 +64,9 @@ $('#submitForm').click((e) => {
         contentType: "application/json",
         dataType: 'json',
         success: function (data, textStatus, jqXHR) {
+            if (data.redirectPage) {
+                window.location.href = data.redirectPage;
+            }
         },
         error: function (jqXHR, textStatus, errorThrown) {
         }
