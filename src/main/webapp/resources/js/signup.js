@@ -1,3 +1,7 @@
+$.ajaxSetup({
+    headers: { 'X-XSRF-TOKEN': $.cookie('XSRF-TOKEN') }
+});
+
 function validatePassword() {
     const password1 = $('#password1');
     const password2 = $('#password2');

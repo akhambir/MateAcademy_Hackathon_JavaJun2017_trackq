@@ -63,8 +63,8 @@ public class UserController {
         return mv;
     }
 
-    @RequestMapping(value = "/signup", method = POST)
-    public String signUp(HttpServletRequest request, @ModelAttribute User user,
+    @RequestMapping(value = "/signup", method = POST, headers = "Accept=application/json")
+    public String signUp(HttpServletRequest request, @RequestBody User user,
                          @RequestParam(required = false) String projectId) {
         if (projectId != null) {
             Project project = projectService.getById(Long.parseLong(projectId));

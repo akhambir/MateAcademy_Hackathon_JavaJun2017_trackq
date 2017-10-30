@@ -48,9 +48,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout().logoutSuccessUrl("/login?logout")
                 .and()
-                .exceptionHandling().accessDeniedPage("/403")
-                .and()
-                .csrf().csrfTokenRepository(csrfTokenRepository()); // TODO fix post request with security
+                .csrf().csrfTokenRepository(csrfTokenRepository());
+                // TODO add valid accessDeniedPage f.e. .exceptionHandling().accessDeniedPage("/signup")
     }
 
     @Bean

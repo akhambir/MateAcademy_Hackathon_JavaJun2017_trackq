@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users", schema = "trackq")
-@JsonSerialize
+@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class User {
 
     @Id
